@@ -18,8 +18,8 @@ export const ProjectPage = ({ title, content, acf }) => {
       return tags.map((tag) => {
         return (
           <Fragment key={tag.slug}>
-            <a>{tag.name}</a>
-            {/* <Link to={`/tag/${tag.slug}`}>{tag.name}</Link> */}
+            {/* <a>{tag.name}</a> */}
+            <Link to={`/program/${tag.slug}`}>{tag.name}</Link>
             <span className="sep">/</span>
           </Fragment>
         );

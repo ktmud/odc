@@ -2,30 +2,34 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Layout from '../components/layout';
-import PostList from '../components/postlist';
+import PostList from '../components/postList';
 import Pagination from '../components/pagination';
 
 export default ({ data, pageContext }) => {
-  const { edges: posts } = data.allWordpressPost;
+  const { nodes: posts } = data.allWordpressPost;
+  const category = data.wordpressCategory;
   return (
     <Layout className="list-page">
-      <PostList posts={posts} title="全部项目" />
+      <PostList posts={posts} title={`最新${category.name}`} />
       <Pagination pageContext={pageContext} pathPrefix="/" />
     </Layout>
   );
 };
 
 export const pageQuery = graphql`
-  query ProjectIndexQuery($limit: Int!, $skip: Int!) {
+  query CategoryPosts($limit: Int!, $skip: Int!, $slug: String!) {
+    wordpressCategory(slug: { eq: $slug }) {
+      name
+      count
+    }
     allWordpressPost(
       sort: { fields: date, order: DESC }
+      filter: { categories: { elemMatch: { slug: { eq: $slug } } } }
       limit: $limit
       skip: $skip
     ) {
-      edges {
-        node {
-          ...PostListFields
-        }
+      nodes {
+        ...PostListFields
       }
     }
   }

@@ -74,7 +74,7 @@ exports.createPages = async ({ graphql, actions }) => {
   pages.forEach(create);
 
   const postsByCategory = {};
-  const postsByTags = {};
+  const postsByVenueType = {};
 
   const collectToDict = (node, dict, items) => {
     if (!items) return;
@@ -87,10 +87,12 @@ exports.createPages = async ({ graphql, actions }) => {
   };
   posts.forEach((node) => {
     collectToDict(node, postsByCategory, node.categories);
-    collectToDict(node, postsByTags, node.acf.venue_type);
+    collectToDict(node, postsByVenueType, node.acf.venue_type);
   });
 
-  const genIndexes = (dict, prefix, tmpl) => {
+  const genIndexes = (dict, taxotype) => {
+    // for category taxonomy, dont add a prefix, use the slug itself as the root subfolder
+    const prefix = taxotype === 'category' ? '' : `/${taxotype}`;
     for (let [cat, items] of Object.entries(dict)) {
       paginate({
         createPage,
@@ -98,12 +100,13 @@ exports.createPages = async ({ graphql, actions }) => {
         itemsPerPage: 10,
         pathPrefix: ({ pageNumber }) =>
           pageNumber === 0 ? `${prefix}/${cat}/` : `${prefix}/${cat}/page`,
-        component: tmpl(cat),
+        component: getTemplate(`${taxotype}-items`),
+        context: {
+          slug: cat
+        }
       });
     }
   };
-  genIndexes(postsByCategory, '', (cat) =>
-    getTemplate(`${cat === 'projects' ? cat : 'posts'}-list`),
-  );
-  genIndexes(postsByTags, '/tag', (cat) => getTemplate(`posts-list`));
+  genIndexes(postsByCategory, 'category'); 
+  genIndexes(postsByVenueType, 'program');
 };

@@ -21,7 +21,7 @@ h1, h2, h3, h4 {
   line-height: 55px;
 }
 
-@mixin hover-highlight($height: 3px, $margin-top: -2px) {
+@mixin hover-highlight($height: 3px, $margin-top: -3px) {
   &:after {
     position: absolute;
     left: 0;
