@@ -1,0 +1,65 @@
+body {
+  padding: 0;
+  margin: 0;
+  background: $odc-gray;
+  color: $base-font-color;
+}
+h1, h2, h3, h4 {
+  color: #fff;
+}
+
+.fr {
+  float: right;
+}
+.fl {
+  float: left;
+}
+.nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  line-height: 55px;
+}
+
+@mixin hover-highlight($height: 3px, $margin-top: -2px) {
+  &:after {
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: block;
+    content: "";
+    height: $height;
+    margin-top: $margin-top;
+    background: rgba($color: $odc-orange, $alpha: 0);
+    transition: all $transition-duration;
+  }
+  &:hover:after {
+    background: rgba($color: $odc-orange, $alpha: 1);
+  }
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+
+  @include hover-highlight();
+
+  &:visited,
+  &:hover, &:visited:hover {
+    color: #fff;
+  }
+}
+
+
+.wpcf7-form-control.wpcf7-submit {
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rabg(0,0,0,0.2);
+  color: #fff;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 1.1em;
+  padding: 0.5em 1em;
+  background: $odc-orange;
+}

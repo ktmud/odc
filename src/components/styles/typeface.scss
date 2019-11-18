@@ -1,0 +1,90 @@
+// for gutenberg-web-typeface
+@import './variables.scss';
+@import '../../../node_modules/reflex-grid/scss/reflex.scss';
+
+@import '../../../node_modules/gutenberg-web-type/src/style/gutenberg-config';
+
+@import '../../../node_modules/gutenberg-web-type/src/style/mixins/font-size';
+@import '../../../node_modules/gutenberg-web-type/src/style/mixins/line-height';
+@import '../../../node_modules/gutenberg-web-type/src/style/mixins/margin';
+@import '../../../node_modules/gutenberg-web-type/src/style/mixins/padding';
+
+@import '../../../node_modules/gutenberg-web-type/src/style/layout/aside';
+@import '../../../node_modules/gutenberg-web-type/src/style/layout/base';
+
+* {
+  margin-bottom: 0;
+}
+p,
+blockquote,
+ul,
+ol,
+table {
+  margin-bottom: 1.15em;
+}
+
+@import '../../../node_modules/gutenberg-web-type/src/style/layout/footer';
+@import '../../../node_modules/gutenberg-web-type/src/style/layout/header';
+@import '../../../node_modules/gutenberg-web-type/src/style/layout/main';
+@import '../../../node_modules/gutenberg-web-type/src/style/layout/section';
+
+@import '../../../node_modules/gutenberg-web-type/src/style/modules/anchor';
+@import '../../../node_modules/gutenberg-web-type/src/style/modules/article';
+@import '../../../node_modules/gutenberg-web-type/src/style/modules/audio';
+@import '../../../node_modules/gutenberg-web-type/src/style/modules/canvas';
+@import '../../../node_modules/gutenberg-web-type/src/style/modules/code';
+@import '../../../node_modules/gutenberg-web-type/src/style/modules/details';
+@import '../../../node_modules/gutenberg-web-type/src/style/modules/figure';
+@import '../../../node_modules/gutenberg-web-type/src/style/modules/form';
+@import '../../../node_modules/gutenberg-web-type/src/style/modules/heading';
+@import '../../../node_modules/gutenberg-web-type/src/style/modules/horizontal-rule';
+@import '../../../node_modules/gutenberg-web-type/src/style/modules/image';
+@import '../../../node_modules/gutenberg-web-type/src/style/modules/list';
+@import '../../../node_modules/gutenberg-web-type/src/style/modules/navigation';
+@import '../../../node_modules/gutenberg-web-type/src/style/modules/progress';
+@import '../../../node_modules/gutenberg-web-type/src/style/modules/quote';
+@import '../../../node_modules/gutenberg-web-type/src/style/modules/table';
+@import '../../../node_modules/gutenberg-web-type/src/style/modules/template';
+@import '../../../node_modules/gutenberg-web-type/src/style/modules/text';
+@import '../../../node_modules/gutenberg-web-type/src/style/modules/video';
+
+html,
+body,
+div,
+article,
+section,
+main,
+footer,
+header,
+form,
+fieldset,
+legend,
+pre,
+code,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+textarea,
+table,
+td,
+th,
+tr,
+input[type='email'],
+input[type='number'],
+input[type='password'],
+input[type='tel'],
+input[type='text'],
+input[type='url'] {
+  box-sizing: border-box;
+}
