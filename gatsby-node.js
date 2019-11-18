@@ -25,6 +25,11 @@ exports.createPages = async ({ graphql, actions }) => {
           categories {
             slug
           }
+          acf {
+            venue_type {
+              slug
+            }
+          }
         }
       }
     }
@@ -33,7 +38,9 @@ exports.createPages = async ({ graphql, actions }) => {
   const pages = result.data.allWordpressPage.nodes;
   const posts =
     process.env.NODE_ENV === 'production'
-      ? result.data.allWordpressPost.nodes.filter(node => node.status === 'publish')
+      ? result.data.allWordpressPost.nodes.filter(
+          (node) => node.status === 'publish',
+        )
       : result.data.allWordpressPost.nodes;
 
   const getTemplate = (pageType) => {
@@ -67,23 +74,36 @@ exports.createPages = async ({ graphql, actions }) => {
   pages.forEach(create);
 
   const postsByCategory = {};
-  posts.forEach(node => {
-    node.categories.forEach(cat => {
-      if (!postsByCategory.hasOwnProperty(cat.slug)) {
-        postsByCategory[cat.slug] = []
+  const postsByTags = {};
+
+  const collectToDict = (node, dict, items) => {
+    if (!items) return;
+    items.forEach((cat) => {
+      if (!dict.hasOwnProperty(cat.slug)) {
+        dict[cat.slug] = [];
       }
-      postsByCategory[cat.slug].push(node);
-    })
+      dict[cat.slug].push(node);
+    });
+  };
+  posts.forEach((node) => {
+    collectToDict(node, postsByCategory, node.categories);
+    collectToDict(node, postsByTags, node.acf.venue_type);
   });
 
-  for (let [cat, items] of Object.entries(postsByCategory)) {
-    paginate({
-      createPage,
-      items,
-      itemsPerPage: 10,
-      pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? `/${cat}/` : `/${cat}/page`),
-      component: getTemplate(`${cat === 'projects' ? cat : 'posts'}-list`),
-    });
-  }
-
+  const genIndexes = (dict, prefix, tmpl) => {
+    for (let [cat, items] of Object.entries(dict)) {
+      paginate({
+        createPage,
+        items,
+        itemsPerPage: 10,
+        pathPrefix: ({ pageNumber }) =>
+          pageNumber === 0 ? `${prefix}/${cat}/` : `${prefix}/${cat}/page`,
+        component: tmpl(cat),
+      });
+    }
+  };
+  genIndexes(postsByCategory, '', (cat) =>
+    getTemplate(`${cat === 'projects' ? cat : 'posts'}-list`),
+  );
+  genIndexes(postsByTags, '/tag', (cat) => getTemplate(`posts-list`));
 };

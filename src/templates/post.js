@@ -26,10 +26,6 @@ export const query = graphql`
         client
         completed_on
         loc
-        services {
-          name
-          slug
-        }
         started_on
       }
       type

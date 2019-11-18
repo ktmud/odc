@@ -8,17 +8,18 @@ const acfFields = [
   ['loc', '地址'],
   ['started_on', '项目开始时间'],
   ['completed_on', '项目完成时间'],
-  ['services', '服务类型'],
+  ['venue_type', '项目类型'],
 ];
 
 export const ProjectPage = ({ title, content, acf }) => {
   const getFieldVal = (field) => {
-    if (field === 'services' || field === 'revenue_type') {
+    if (field === 'venue_type') {
       const tags = acf[field];
       return tags.map((tag) => {
         return (
           <Fragment key={tag.slug}>
-            <Link to={`/tag/${tag.slug}`}>{tag.name}</Link>
+            <a>{tag.name}</a>
+            {/* <Link to={`/tag/${tag.slug}`}>{tag.name}</Link> */}
             <span className="sep">/</span>
           </Fragment>
         );
@@ -92,7 +93,7 @@ export const pageQuery = graphql`
         client
         completed_on
         loc
-        services {
+        venue_type {
           name
           slug
         }

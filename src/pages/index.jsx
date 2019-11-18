@@ -30,10 +30,6 @@ export const pageQuery = graphql`
           completed_on
           loc
           started_on
-          services {
-            name
-            slug
-          }
           feature_image {
             alt_text
             caption
