@@ -12,10 +12,9 @@ const Header = ({ meta, menu }) => (
       </Link>
       <ul className="nav fr">
         {menu.items.map(({ title, url }) => {
-          const isCurrent = location.pathname != '/' && url.indexOf(location.pathname) != -1;
           return (
-            <li key={url} className={isCurrent ? "current" : ""}>
-              <Link title={title} to={url.replace(meta.url, '')}>
+            <li key={url}>
+              <Link partiallyActive activeClassName="current" title={title} to={url.replace(meta.url, '')}>
                 {title}
               </Link>
             </li>

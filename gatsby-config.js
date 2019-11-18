@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV || 'development'}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `城像设计`,
@@ -10,8 +14,8 @@ module.exports = {
       resolve: `gatsby-source-wordpress`,
       options: {
         // your WordPress source
+        baseUrl: process.env.WORDPRESS_BASEURL,
         // baseUrl: `localhost:1880`,
-        baseUrl: `content.odcstudios.com`,
         protocol: `http`,
         // is it hosted on wordpress.com, or self-hosted?
         hostingWPCOM: false,

@@ -47,10 +47,8 @@ header .nav {
   li {
     display: inline-block;
     margin-left: 3em;
-    &.current {
-      a:after {
-        background-color: $odc-orange;
-      }
+    a.current:after {
+      background-color: $odc-orange;
     }
   }
   li a {
@@ -185,7 +183,7 @@ a.content {
 
 .project-page {
   h1 {
-  text-align: center;
+    text-align: center;
   }
   .hero-image {
     margin-top: -110px;
