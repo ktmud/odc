@@ -1,0 +1,31 @@
+upstream {{ .APP }} {
+{{ range .DOKKU_APP_LISTENERS | split " " }}
+  server {{ . }};
+{{ end }}
+}
+server {
+  listen      [::]:{{ .NGINX_PORT }};
+  listen      {{ .NGINX_PORT }};
+  server_name {{ .NOSSL_SERVER_NAME }};
+  access_log  /var/log/nginx/{{ .APP }}-access.log;
+  error_log   /var/log/nginx/{{ .APP }}-error.log;
+
+  location    /__rebuild__ {
+    proxy_pass  http://{{ .APP }};
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Forwarded-For $remote_addr;
+    proxy_set_header X-Forwarded-Port $server_port;
+    proxy_set_header X-Request-Start $msec;
+  }
+
+  location / {
+    index index.html;
+    try_files $uri $uri/ =404;
+    root /var/lib/dokku/data/storage/{{ .APP }}/;
+  }
+  include {{ .DOKKU_ROOT }}/{{ .APP }}/nginx.conf.d/*.conf;
+}
