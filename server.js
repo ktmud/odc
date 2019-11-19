@@ -26,7 +26,7 @@ const rebuild = (res) => {
   });
 };
 
-const port = process.env.GATSBY_REBUILD_PORT || 5000;
+const port = process.env.GATSBY_REBUILD_PORT || 1984;
 const secret = process.env.GATSBY_REBUILD_SECRET || 'keyboardcat';
 
 createServer(function(req, res) {
