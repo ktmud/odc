@@ -10,7 +10,7 @@ COPY package*.json yarn.lock ./
 RUN yarn
 
 COPY src /app/src
-COPY *.js .env.* /app/
+COPY *.js /app/
 
 # your wordpress host url
 ARG WORDPRESS_BASEURL=wordpress:5000
