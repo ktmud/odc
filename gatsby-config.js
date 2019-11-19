@@ -6,7 +6,6 @@ module.exports = {
   siteMetadata: {
     title: `城像设计`,
     description: `深圳市城像设计咨询有限公司`,
-    author: `深圳市城像设计咨询有限公司`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
