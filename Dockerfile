@@ -12,6 +12,10 @@ RUN yarn
 COPY src /app/src
 COPY *.js .env.* /app/
 
+# your wordpress host url
+ARG WORDPRESS_BASEURL=wordpress:5000
+RUN echo "WordPress base URL: ${WORDPRESS_BASEURL}" && yarn build
+
 EXPOSE 1984
 COPY nginx.conf.sigil /app/
 CMD node server.js
