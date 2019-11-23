@@ -9,10 +9,7 @@ export default function PostPage({ data }) {
     <Layout className="post-page">
       <div className="container">
         <h1 className="title">{title}</h1>
-        <div
-          className="content"
-          dangerouslySetInnerHTML={{ __html: content }}
-        />
+        <WordpressContent content={content} />
       </div>
     </Layout>
   );

@@ -2,26 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Layout from '../components/layout';
 import { graphql } from 'gatsby';
+import WordpressContent from '../components/wordpressContent';
 
 export const PageTemplate = ({ title, content }) => {
   return (
-    <section className="section section--gradient">
-      <div className="container">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <div className="section">
-              <h2 className="title is-size-3 has-text-weight-bold is-bold-light">
-                {title}
-              </h2>
-              <div
-                className="content"
-                dangerouslySetInnerHTML={{ __html: content }}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div className="container">
+      <h1 className="title">{title}</h1>
+      <WordpressContent className="content" content={content} />
+    </div>
   );
 };
 

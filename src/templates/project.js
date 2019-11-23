@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Layout from '../components/layout';
 import { Link, graphql } from 'gatsby';
 import Img from 'gatsby-image';
+import WordpressContent from '../components/wordpressContent';
 
 const acfFields = [
   ['loc', '地址'],
@@ -32,13 +33,14 @@ export const ProjectPage = ({ title, content, acf }) => {
   return (
     <>
       {image ? (
-        <Img className="hero-image"
+        <Img
+          className="hero-image"
           fluid={image.localFile.childImageSharp.fluid}
           alt={image.alt_text}
           title={image.title}
         />
       ) : null}
-      <div className="container">
+      <div className="entry">
         <h1 className="title">{title}</h1>
         <div className="project-details">
           <table>
@@ -55,10 +57,7 @@ export const ProjectPage = ({ title, content, acf }) => {
             </tbody>
           </table>
         </div>
-        <div
-          className="content"
-          dangerouslySetInnerHTML={{ __html: content }}
-        />
+        <WordpressContent content={content} />
       </div>
     </>
   );
@@ -105,8 +104,8 @@ export const pageQuery = graphql`
           title
           localFile {
             childImageSharp {
-              fluid(jpegProgressive: true, fit: COVER) {
-                ...GatsbyImageSharpFluid
+              fluid(jpegQuality: 95, jpegProgressive: true, fit: COVER) {
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }

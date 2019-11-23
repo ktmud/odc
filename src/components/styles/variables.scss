@@ -1,12 +1,13 @@
-$odc-orange: #FD780F;
+$odc-orange: #EC6C12;
 $odc-gray: #3F3F3F;
 $odc-black: #363636;
 
-$base: 16;
-$base-font-size: 110;
-$base-font-size-desktop: 120;
+$base-font-size: 16px;
 $base-font-color: #eee;
 $transition-duration: 0.3s;
+$text-max-width: 64rem;
+$table-border-color: #505050;
+
 
 $theme: OpenSans;
 $custom-font-body: Merriweather, serif;
@@ -25,3 +26,26 @@ $headings: (
 ) !default;
 
 $reflex-grid-spacing: 8px;
+
+
+@mixin responsive-max-width() {
+    @media (min-width: $reflex-xs) {
+        max-width: $reflex-xs;
+    }
+
+    @media (min-width: $reflex-sm) {
+        max-width: $reflex-sm;
+    }
+
+    @media (min-width: $reflex-md) {
+        max-width: $reflex-md;
+    }
+
+    @media (min-width: $reflex-lg) {
+        max-width: $reflex-lg;
+    }
+
+    @media (min-width: $reflex-xlg) {
+        max-width: $reflex-xlg;
+    }
+}

@@ -1,0 +1,146 @@
+.main-header {
+  font-size: 1.1em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  font-weight: 500;
+  background: linear-gradient(
+    rgba($color: #000000, $alpha: 0.2),
+    rgba($color: #000000, $alpha: 0)
+  );
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  transition: all $transition-duration;
+
+  a {
+    transition: none;
+    line-height: 1.5;
+  }
+
+  nav {
+    margin: 0 auto;
+    transition: all $transition-duration;
+  }
+  .logo {
+    display: inline-block;
+
+    &:hover:after {
+      display: none;
+      margin: 0;
+    }
+    img {
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.08));
+      display: inline-block;
+      vertical-align: middle;
+      transition: all $transition-duration;
+      &.logo-icon {
+        height: 82px;
+        margin-right: 28px;
+      }
+      &.logo-text {
+        margin-top: 3%;
+      }
+    }
+  }
+}
+
+header .nav {
+  margin-top: 0.8em;
+  line-height: 60px;
+  font-size: 18px;
+
+  li {
+    display: inline-block;
+    margin-left: 54px;
+    a.current {
+      color: $odc-orange;
+      &:after {
+        background-color: $odc-orange;
+      }
+    }
+  }
+  li a {
+    display: inline-block;
+    &, &:after {
+      transition: all $transition-duration;
+    }
+  }
+}
+
+body[data-scrolled='1'] {
+  .post-page,
+  .list-page {
+    .main-header {
+      background: $odc-gray;
+      .nav {
+        font-size: 16px;
+        line-height: 44px;
+        li {
+          margin-left: 36px;
+          margin-right: 12px;
+        }
+        a:after {
+          margin-top: -5px;
+        }
+      }
+      .logo {
+        .logo-icon {
+          height: 64px;
+          margin-right: 23px;
+        }
+        .logo-text {
+          height: 23px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $reflex-md) {
+  .logo {
+    img {
+      width: 340px;
+    }
+  }
+  header .nav {
+    margin-top: 6px;
+    li {
+      margin-left: 2.4em;
+    }
+  }
+}
+@media (max-width: $reflex-sm) {
+  .logo {
+    width: 70px;
+    overflow: hidden;
+    img {
+      max-width: none;
+    }
+  }
+  header .nav {
+    li {
+      margin-left: 2em;
+    }
+  }
+}
+@media (max-width: $reflex-xs) {
+  .main-header {
+    .logo {
+      width: 64px;
+      img {
+        width: 310px;
+        body[data-scrolled='1'] .post-page & {
+          height: auto;
+        }
+      }
+    }
+  }
+  header .nav {
+    font-size: $base-font-size;
+    li {
+      margin-left: 1em;
+    }
+  }
+}

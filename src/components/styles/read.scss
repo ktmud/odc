@@ -1,0 +1,60 @@
+@import './wp-block-gallery.scss';
+@import './wp-blocks.scss';
+
+.wp-block-gallery .blocks-gallery-image figcaption,
+.wp-block-gallery .blocks-gallery-item figcaption,
+.blocks-gallery-grid .blocks-gallery-image figcaption,
+.blocks-gallery-grid .blocks-gallery-item figcaption {
+  text-shadow: 0 0 1px rgba(0,0,0,0.4);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.4) 0,
+    rgba(0, 0, 0, 0) 90%,
+    transparent
+  );
+}
+
+.hero-image {
+  margin-top: -110px;
+}
+
+.project-page h1 {
+  text-align: center;
+}
+
+.project-details table {
+  width: 100%;
+  max-width: 40em;
+  margin: 3em auto;
+  font-size: 1.05em;
+  border-top: 2px solid $table-border-color;
+  border-bottom: 2px solid $table-border-color;
+  line-height: 1.6em;
+  th,
+  td {
+    border-bottom: 1px solid $table-border-color;
+    padding: 0.5em 1em;
+    font-weight: 400;
+  }
+  th {
+    border-right: 1px solid $table-border-color;
+    text-align: right;
+    width: 10em;
+  }
+  a {
+    margin: 0.5em;
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  .sep {
+    color: rgba($color: #fff, $alpha: 0.4);
+    font-weight: 100;
+    &:last-child {
+      display: none;
+    }
+  }
+}

@@ -25,14 +25,14 @@ module.exports = {
           replacementUrl: 'http://www.odcstudios.com',
         },
         includedRoutes: [
+          '**/taxonomies',
           '**/categories',
+          '**/tags',
           '**/posts',
           '**/pages',
           '**/media',
-          '**/tags',
           '**/*/*/menus',
           '**/*/*/menus-locations',
-          '**/taxonomies',
         ],
         keepMediaSizes: true,
       },
@@ -57,7 +57,7 @@ module.exports = {
         background_color: `#FD780F`,
         theme_color: `#FD780F`,
         display: `minimal-ui`,
-        icon: `src/images/odc-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/odc-logo.png`, // This path is relative to the root of the site.
       },
     },
     {
@@ -74,6 +74,6 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    `gatsby-plugin-offline`,
+    // `gatsby-plugin-offline`,
   ],
 };

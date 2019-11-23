@@ -21,7 +21,7 @@ h1, h2, h3, h4 {
   line-height: 55px;
 }
 
-@mixin hover-highlight($height: 3px, $margin-top: -3px) {
+@mixin hover-highlight($height: 0.15em, $margin-top: -0.3em) {
   &:after {
     position: absolute;
     left: 0;
@@ -51,6 +51,16 @@ a {
   }
 }
 
+
+input, textarea {
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  padding: 0.3em 0.5em;
+  border-radius: 1px;
+  background: rgba(0,0,0,0.2);
+  border: solid 1px $table-border-color;
+}
 
 .wpcf7-form-control.wpcf7-submit {
   border: 0;

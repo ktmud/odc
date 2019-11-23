@@ -87,7 +87,9 @@ exports.createPages = async ({ graphql, actions }) => {
   };
   posts.forEach((node) => {
     collectToDict(node, postsByCategory, node.categories);
-    collectToDict(node, postsByVenueType, node.acf.venue_type);
+    if (node.acf) {
+      collectToDict(node, postsByVenueType, node.acf.venue_type);
+    }
   });
 
   const genIndexes = (dict, taxotype) => {
