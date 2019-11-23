@@ -14,5 +14,5 @@ COPY nginx.conf.sigil CHECKS app.json /app/
 # ARG WORDPRESS_BASEURL=wordpress:5000
 # RUN echo "WordPress base URL: ${WORDPRESS_BASEURL}" && npm run build
 
-EXPOSE 1984
+EXPOSE 80
 CMD node server.js
