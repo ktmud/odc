@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../components/layout';
-import PostList from '../components/postList';
+import PostList from '../components/postlist';
 import Pagination from '../components/pagination';
 
 export default ({ data, pageContext }) => {
