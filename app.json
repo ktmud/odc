@@ -1,7 +1,0 @@
-{
-  "scripts": {
-    "dokku": {
-      "postdeploy": "curl https://localhost/__rebuild__"
-    }
-  }
-}

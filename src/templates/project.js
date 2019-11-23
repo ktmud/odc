@@ -9,10 +9,16 @@ const acfFields = [
   ['loc', '地址'],
   ['started_on', '项目开始时间'],
   ['completed_on', '项目完成时间'],
-  ['venue_type', '项目类型'],
+  // ['venue_type', '场所类型'],
 ];
 
-export const ProjectPage = ({ title, content, acf }) => {
+export const ProjectPage = ({
+  title,
+  content,
+  acf,
+  categories,
+  featured_media: image,
+}) => {
   const getFieldVal = (field) => {
     if (field === 'venue_type') {
       const tags = acf[field];
@@ -28,7 +34,9 @@ export const ProjectPage = ({ title, content, acf }) => {
     }
     return acf[field];
   };
-  const image = acf.feature_image;
+  const filteredCategories = categories && categories.filter(({ slug }) => {
+    return slug !== 'uncategoried' && slug !== 'projects';
+  });
 
   return (
     <>
@@ -45,6 +53,22 @@ export const ProjectPage = ({ title, content, acf }) => {
         <div className="project-details">
           <table>
             <tbody>
+              {filteredCategories ? (
+                <tr key="categories">
+                  <th>项目类型</th>
+                  <td>
+                    {filteredCategories.map(({ slug, name }) => {
+                      return (
+                        <Fragment key={slug}>
+                          {/* <a>{tag.name}</a> */}
+                          <Link to={`/${slug}/`}>{name}</Link>
+                          <span className="sep">/</span>
+                        </Fragment>
+                      );
+                    })}
+                  </td>
+                </tr>
+              ) : null}
               {acfFields.map(([field, name]) => {
                 if (!acf[field]) return;
                 return (
@@ -73,7 +97,7 @@ const Page = ({ data }) => {
 
   return (
     <Layout className="post-page project-page">
-      <ProjectPage title={page.title} content={page.content} acf={page.acf} />
+      <ProjectPage {...page} />
     </Layout>
   );
 };
@@ -97,16 +121,16 @@ export const pageQuery = graphql`
           slug
         }
         started_on
-        feature_image {
-          alt_text
-          caption
-          source_url
-          title
-          localFile {
-            childImageSharp {
-              fluid(jpegQuality: 95, jpegProgressive: true, fit: COVER) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
+      }
+      featured_media {
+        alt_text
+        caption
+        source_url
+        title
+        localFile {
+          childImageSharp {
+            fluid(jpegQuality: 95, jpegProgressive: true, fit: COVER) {
+              ...GatsbyImageSharpFluid_withWebp
             }
           }
         }
@@ -122,6 +146,7 @@ export const pageQuery = graphql`
       format
       date
       content
+      excerpt
       categories {
         slug
         name

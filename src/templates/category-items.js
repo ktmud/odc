@@ -8,6 +8,7 @@ import Pagination from '../components/pagination';
 export default ({ data, pageContext }) => {
   const { nodes: posts } = data.allWordpressPost;
   const category = data.wordpressCategory;
+  const { nodes: allCategories } = data.allWordpressCategory;
   return (
     <Layout className="list-page">
       <PostList posts={posts} title={`最新${category.name}`} />
@@ -18,6 +19,17 @@ export default ({ data, pageContext }) => {
 
 export const pageQuery = graphql`
   query CategoryPosts($limit: Int!, $skip: Int!, $slug: String!) {
+    allWordpressCategory {
+      nodes {
+        name
+        slug
+        path
+        count
+        parent_element {
+          slug
+        }
+      }
+    }
     wordpressCategory(slug: { eq: $slug }) {
       name
       count

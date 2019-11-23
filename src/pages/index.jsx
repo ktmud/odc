@@ -16,30 +16,42 @@ export default ({ data }) => {
 export const pageQuery = graphql`
   query FeaturedProjects {
     allWordpressPost(
-      filter: { acf: { feature_image: { id: { glob: "*" } } } }
+      filter: { featured_media: { id: { glob: "*" } } }
       sort: { fields: [sticky, date], order: [DESC, DESC] }
+      limit: 10
     ) {
       nodes {
         id
         path
         title
         excerpt
+        sticky
         acf {
           address
           client
           completed_on
           loc
           started_on
-          feature_image {
-            alt_text
-            caption
-            source_url
-            title
-            localFile {
-              childImageSharp {
-                fluid(jpegQuality: 95, jpegProgressive: true, fit: COVER) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
+        }
+        featured_media {
+          alt_text
+          caption
+          source_url
+          title
+          localFile {
+            childImageSharp {
+              fluid(
+                quality: 97
+                jpegQuality: 97
+                webpQuality: 97
+                jpegProgressive: true
+                fit: COVER
+                maxWidth: 1960
+                maxHeight: 1024
+              ) {
+                ...GatsbyImageSharpFluid_withWebp
+                presentationWidth
+                presentationHeight
               }
             }
           }
