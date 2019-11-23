@@ -1,10 +1,28 @@
 const createServer = require('http').createServer;
 const parseUrl = require('url').parse;
 
+let running = 0;
+
 const rebuild = (res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.write(`Rebuilding... ${new Date()}\n\n`);
-  res.flushHeaders();
+  if (running === 1) {
+    running = 2;
+  }
+  if (running > 1) {
+    if (res) {
+      res.writeHead(200, { 'Content-Type': 'text/plain' });
+      res.write(`Another task already in progress.\n`);
+      res.end();
+    }
+    return;
+  }
+
+  running = 1;
+  if (res) {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.write(`Rebuilding... ${new Date()}\n\n`);
+    res.flushHeaders();
+    res.end();
+  }
 
   const { spawn } = require('child_process');
   const p = spawn('yarn', ['build']);
@@ -12,17 +30,23 @@ const rebuild = (res) => {
   p.stdout.on('data', (data) => {
     data = String(data);
     process.stdout.write(data);
-    res.write(data.split('\n').map(x => `| ${x}`).join('\n'));
+    // res.write(data.split('\n').map(x => `| ${x}`).join('\n'));
   });
 
   p.stderr.on('data', (data) => {
     data = String(data);
     process.stdout.write(data);
-    res.write(data.split('\n').map(x => `> ${x}`).join('\n'));
+    // res.write(data.split('\n').map(x => `> ${x}`).join('\n'));
   });
 
-  p.on('close', (code) => {
-    res.end();
+  p.on('close', () => {
+    process.stdout.write('\nDone.\n\n');
+    // if another run is triggered while still running, return
+    if (running > 1) {
+      running = 0;
+      rebuild();
+    }
+    running = 0;
   });
 };
 
