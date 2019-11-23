@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dokku": {
-      "postdeploy": "curl https://localhost:1984/__init__"
+      "postdeploy": "curl https://localhost/__init__"
     }
   }
 }
