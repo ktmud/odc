@@ -11,8 +11,7 @@ COPY *.js .env.* /app/
 
 # your wordpress host url
 ARG WORDPRESS_BASEURL=wordpress:5000
-RUN gatsby telemetry --disable
-RUN echo "WordPress base URL: ${WORDPRESS_BASEURL}" && yarn build
+RUN echo "WordPress base URL: ${WORDPRESS_BASEURL}" && npm run build
 
 EXPOSE 1984
 COPY nginx.conf.sigil /app/

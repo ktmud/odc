@@ -2,18 +2,25 @@ const path = require(`path`);
 const slash = require(`slash`);
 const { paginate } = require('gatsby-awesome-pagination');
 
+const filterPublished = (nodes) => {
+  return process.env.NODE_ENV === 'production'
+    ? nodes.filter((node) => node.status === 'publish')
+    : nodes;
+};
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
   // query content for WordPress posts
   const result = await graphql(`
     query PagesAndPosts {
-      allWordpressPage(filter: { status: { eq: "publish" } }) {
+      allWordpressPage {
         nodes {
           id
           slug
           path
           title
+          status
         }
       }
       allWordpressPost {
@@ -22,6 +29,7 @@ exports.createPages = async ({ graphql, actions }) => {
           slug
           path
           title
+          status
           categories {
             slug
           }
@@ -35,13 +43,8 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  const pages = result.data.allWordpressPage.nodes;
-  const posts =
-    process.env.NODE_ENV === 'production'
-      ? result.data.allWordpressPost.nodes.filter(
-          (node) => node.status === 'publish',
-        )
-      : result.data.allWordpressPost.nodes;
+  const pages = filterPublished(result.data.allWordpressPage.nodes);
+  const posts = filterPublished(result.data.allWordpressPost.nodes);
 
   const getTemplate = (pageType) => {
     return slash(path.resolve(`./src/templates/${pageType}.js`));
@@ -104,11 +107,11 @@ exports.createPages = async ({ graphql, actions }) => {
           pageNumber === 0 ? `${prefix}/${cat}/` : `${prefix}/${cat}/page`,
         component: getTemplate(`${taxotype}-items`),
         context: {
-          slug: cat
-        }
+          slug: cat,
+        },
       });
     }
   };
-  genIndexes(postsByCategory, 'category'); 
+  genIndexes(postsByCategory, 'category');
   genIndexes(postsByVenueType, 'program');
 };

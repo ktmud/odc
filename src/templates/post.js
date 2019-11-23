@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '../components/layout';
 import { graphql } from 'gatsby';
+import WordpressContent from '../components/wordpressContent';
 
 export default function PostPage({ data }) {
   const { wordpressPost: post } = data;
