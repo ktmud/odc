@@ -57,7 +57,10 @@ createServer(function(req, res) {
   const parsedUrl = parseUrl(req.url);
   const { pathname, query } = parsedUrl;
 
-  if ((pathname === '/__rebuild__' && (query === secret || req.headers.host === 'localhost:1984'))) {
+  if (
+    (pathname === '/__rebuild__' && query === secret) ||
+    (req.headers.host === 'localhost' && pathname === '/')
+  ) {
     rebuild(res);
   } else {
     res.writeHead(404, { 'Content-Type': 'text/plain' });
@@ -66,4 +69,4 @@ createServer(function(req, res) {
   }
 }).listen(port);
 
-console.log(`Listening on http://localhost:${port}`)
+console.log(`Listening on http://localhost:${port}`);
