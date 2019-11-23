@@ -59,7 +59,7 @@ createServer(function(req, res) {
 
   if (
     (pathname === '/__rebuild__' && query === secret) ||
-    (req.headers.host.split(':')[0] === 'localhost' && pathname === '/__init__')
+    (req.headers.host.split(':')[0] === 'localhost' && pathname === '/__rebuild__')
   ) {
     rebuild(res);
   } else {
