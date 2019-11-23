@@ -8,11 +8,11 @@ RUN env NODE_ENV=${NODE_ENV} npm install --registry ${NPM_REGISTRY}
 
 COPY src /app/src
 COPY *.js .env.* /app/
+COPY nginx.conf.sigil /app/
 
 # your wordpress host url
 ARG WORDPRESS_BASEURL=wordpress:5000
 RUN echo "WordPress base URL: ${WORDPRESS_BASEURL}" && npm run build
 
 EXPOSE 1984
-COPY nginx.conf.sigil /app/
 CMD node server.js
