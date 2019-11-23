@@ -8,7 +8,7 @@ RUN env NODE_ENV=${NODE_ENV} npm install --registry ${NPM_REGISTRY}
 
 COPY src /app/src
 COPY *.js .env.* /app/
-COPY nginx.conf.sigil /app/
+COPY nginx.conf.sigil CHECKS app.json /app/
 
 # your wordpress host url
 ARG WORDPRESS_BASEURL=wordpress:5000

@@ -57,7 +57,7 @@ createServer(function(req, res) {
   const parsedUrl = parseUrl(req.url);
   const { pathname, query } = parsedUrl;
 
-  if (pathname === '/__rebuild__' && query === secret) {
+  if ((pathname === '/__rebuild__' && (query === secret || req.headers.host === 'localhost:1984'))) {
     rebuild(res);
   } else {
     res.writeHead(404, { 'Content-Type': 'text/plain' });
