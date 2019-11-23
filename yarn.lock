@@ -5566,7 +5566,7 @@ gatsby-plugin-sass@^2.1.23:
 
 gatsby-plugin-sharp@^2.3.0:
   version "2.3.2"
-  resolved "https://registry.npm.taobao.org/gatsby-plugin-sharp/download/gatsby-plugin-sharp-2.3.2.tgz#bf9eb6234f7a6c38a9611466f4bd7fae14635dd4"
+  resolved "https://registry.npm.taobao.org/gatsby-plugin-sharp/download/gatsby-plugin-sharp-2.3.2.tgz?cache=0&sync_timestamp=1574464147576&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fgatsby-plugin-sharp%2Fdownload%2Fgatsby-plugin-sharp-2.3.2.tgz#bf9eb6234f7a6c38a9611466f4bd7fae14635dd4"
   integrity sha1-v562I096bDipYRRm9L1/rhRjXdQ=
   dependencies:
     "@babel/runtime" "^7.7.2"
