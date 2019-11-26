@@ -1,50 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
-import Img from 'gatsby-image';
 import Slider from 'react-slick';
 import Gallery from 'react-photo-gallery';
-
+import GalleryItem, { GalleryItemPropType } from './galleryitem';
 import './homegallery.scss';
 
-const GalleryItemPropType = PropTypes.shape({
-  title: PropTypes.string.isRequired,
-  path: PropTypes.string.isRequired,
-  image: PropTypes.object.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-});
 Gallery.propTypes.photos = PropTypes.arrayOf(GalleryItemPropType).isRequired;
-
-const GalleryItem = ({ width, height, path, title, image }) => {
-  return (
-    <div
-      className="gallery-item"
-      key={path}
-      style={{
-        width,
-        height,
-      }}
-    >
-      <Link key={path} to={path}>
-        <Img
-          fluid={image.localFile.childImageSharp.fluid}
-          alt={image.alt_text}
-          title={image.title}
-        />
-        <div className="meta container">
-          <h2>{title}</h2>
-          {image.caption ? (
-            <div
-              className="caption"
-              dangerouslySetInnerHTML={{ __html: image.caption }}
-            />
-          ) : null}
-        </div>
-      </Link>
-    </div>
-  );
-};
 
 export default ({ items }) => {
   const photos = items.map(({ path, title, featured_media: image }) => {

@@ -1,25 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import Layout from '../components/layout';
 import PostList from '../components/postlist';
 import Pagination from '../components/pagination';
+import ProjectList from '../components/projectlist';
 
 export default ({ data, pageContext }) => {
   const { nodes: posts } = data.allWordpressPost;
   const category = data.wordpressCategory;
-  const { nodes: allCategories } = data.allWordpressCategory;
+  const { nodes: categories } = data.allWordpressCategory;
   return (
     <Layout className="list-page">
-      <PostList posts={posts} title={`最新${category.name}`} />
-      <Pagination pageContext={pageContext} pathPrefix="/" />
+      <div className="container">
+        <nav className="list-filter">
+          <ul>
+            {categories.map(({ slug, name, count }) => {
+              return (
+                <li key={slug}>
+                  <Link to={`/${slug}/`} activeClassName="active" partiallyActive>
+                    {name} <span className="sep">···</span> {count}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+        <div className="chrono-list">
+          <ProjectList items={posts} title={`最新${category.name}${category.name === '项目' ? '' : '项目'}`} />
+          <Pagination pageContext={pageContext} pathPrefix="/" />
+        </div>
+      </div>
     </Layout>
   );
 };
 
 export const pageQuery = graphql`
   query CategoryPosts($limit: Int!, $skip: Int!, $slug: String!) {
-    allWordpressCategory {
+    allWordpressCategory(
+      filter: { count: { gt: 0 }, parent_element: { slug: { eq: "projects" } } }
+    ) {
       nodes {
         name
         slug
@@ -41,6 +61,7 @@ export const pageQuery = graphql`
       skip: $skip
     ) {
       nodes {
+        ...PostImageFields
         ...PostListFields
       }
     }

@@ -78,6 +78,7 @@
     text-decoration: none;
     display: block;
     position: relative;
+    background: rgba(0, 0, 0, 0.1);
   }
 
   a:after {
@@ -120,8 +121,9 @@
     padding: 0.5em 1em;
     border-radius: 2px;
     text-shadow: 0 0px 3px rgba(0, 0, 0, 0.5);
-    h2 {
+    h3 {
       font-size: 1.18em;
+      margin: 0;
     }
   }
   .hero-image .meta {

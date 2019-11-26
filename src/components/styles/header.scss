@@ -96,6 +96,11 @@ body[data-scrolled='1'] {
       }
     }
   }
+  .list-page {
+    .main-header {
+      background: darken($odc-gray, 4);
+    }
+  }
 }
 
 @media (max-width: $reflex-md) {

@@ -1,0 +1,44 @@
+.list-filter {
+  margin: 2em 0;
+  text-align: center;
+  font-size: 1.15em;
+  border: 1px solid rgba(#fff, 0.04);
+  border-width: 0 0 1px;
+  line-height: 1;
+  .sep {
+    opacity: 0.3;
+    display: inline-block;
+    padding: 0 0.5em;
+  }
+  ul {
+    margin: 0;
+  }
+  li {
+    display: inline-block;
+    margin: 0.8em 1em;
+    min-width: 8em;
+    list-style: none;
+    padding: 0;
+  }
+  a {
+    display: inline-block;
+    padding: 0.5em 0.8em;
+    border-radius: 1px;
+    &:hover {
+      color: #fff;
+      background: rgba($odc-orange, 0.2);
+    }
+    &:after {
+      display: none;
+    }
+    &.active {
+      background: $odc-orange;
+    }
+  }
+}
+
+.chrono-list {
+  h1 {
+    margin: 2.5em 0 1.3em;
+  }
+}

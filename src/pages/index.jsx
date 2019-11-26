@@ -21,43 +21,8 @@ export const pageQuery = graphql`
       limit: 10
     ) {
       nodes {
-        id
-        path
-        title
-        excerpt
-        sticky
-        acf {
-          address
-          client
-          completed_on
-          loc
-          started_on
-        }
-        featured_media {
-          alt_text
-          caption
-          source_url
-          title
-          localFile {
-            childImageSharp {
-              fluid(
-                quality: 97
-                jpegQuality: 97
-                webpQuality: 97
-                jpegProgressive: true
-                fit: COVER
-                maxWidth: 1960
-                maxHeight: 1024
-              ) {
-                ...GatsbyImageSharpFluid_withWebp
-                presentationWidth
-                presentationHeight
-              }
-            }
-          }
-        }
-        date
-        modified
+        ...PostImageFields
+        ...PostListFields
       }
     }
   }

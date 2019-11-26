@@ -10,4 +10,4 @@ COPY src /app/src
 COPY *.js .env.* CHECKS /app/
 
 EXPOSE 80
-CMD node server.js
+CMD env PORT=80 node server.js
