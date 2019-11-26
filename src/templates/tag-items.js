@@ -4,11 +4,11 @@ import Layout from '../components/layout';
 import PostList from '../components/postlist';
 import Pagination from '../components/pagination';
 
-export default ({ data, pageContext }) => {
+export default ({ data, pageContext, location }) => {
   const { nodes: posts, pageInfo } = data.allWordpressPost;
   const tag = data.wordpressTag;
   return (
-    <Layout className="list-page">
+    <Layout className="list-page" location={location}>
       <PostList
         posts={posts}
         title={`所有 ${tag.name} 项目 (共 ${pageInfo.itemCount} 项)`}

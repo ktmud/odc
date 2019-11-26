@@ -10,13 +10,11 @@ function runCommand(cmd, args, callback) {
   p.stdout.on('data', (data) => {
     data = String(data);
     process.stdout.write(data);
-    // res.write(data.split('\n').map(x => `| ${x}`).join('\n'));
   });
 
   p.stderr.on('data', (data) => {
     data = String(data);
     process.stdout.write(data);
-    // res.write(data.split('\n').map(x => `> ${x}`).join('\n'));
   });
 
   p.on('close', () => {
@@ -75,7 +73,12 @@ function startServer() {
           rebuild(res);
         } else {
           // Serve files!
-          file.serve(req, res);
+          file.serve(req, res, (e) => {
+            if (e && e.status === 404) {
+              // If the file wasn't found
+              fileServer.serveFile('/404.html', 404, {}, req, res);
+            }
+          });
         }
       })
       .resume();

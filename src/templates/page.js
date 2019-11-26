@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import Layout from '../components/layout';
 import { graphql } from 'gatsby';
 import WordpressContent from '../components/wordpressContent';
+import SEO from '../components/seo';
 
 export const PageTemplate = ({ title, content }) => {
   return (
     <div className="container">
+      <SEO title={title} />
       <h1 className="title">{title}</h1>
       <WordpressContent className="content" content={content} />
     </div>
@@ -18,11 +20,11 @@ PageTemplate.propTypes = {
   content: PropTypes.string,
 };
 
-const Page = ({ data }) => {
+const Page = ({ data, location }) => {
   const { wordpressPage: page } = data;
 
   return (
-    <Layout className="post-page">
+    <Layout className="post-page" location={location}>
       <PageTemplate title={page.title} content={page.content} />
     </Layout>
   );

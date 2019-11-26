@@ -13,7 +13,8 @@ import Header from './header';
 import Footer from './footer';
 import './layout.scss';
 
-const Layout = ({ children, className }) => {
+const Layout = (props) => {
+  const { children, className, location } = props;
   const data = useStaticQuery(graphql`
     query SiteMetaQuery {
       wordpressSiteMetadata {
@@ -51,6 +52,7 @@ const Layout = ({ children, className }) => {
   return (
     <div className={className}>
       <Header
+        location={location}
         meta={data.wordpressSiteMetadata}
         menu={data.allWordpressMenusMenusItems.nodes[0]}
       />

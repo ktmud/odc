@@ -5,21 +5,33 @@ import Layout from '../components/layout';
 import PostList from '../components/postlist';
 import Pagination from '../components/pagination';
 import ProjectList from '../components/projectlist';
+import SEO from '../components/seo';
 
-export default ({ data, pageContext }) => {
+export default ({ data, pageContext, location }) => {
   const { nodes: posts } = data.allWordpressPost;
   const category = data.wordpressCategory;
-  const { nodes: categories } = data.allWordpressCategory;
+  const { categoryChildren: kids, categorySiblings: siblings } = data;
+  const { nodes: categories } = kids.nodes.length > 0 ? kids : siblings;
   return (
-    <Layout className="list-page">
+    <Layout className="list-page" location={location}>
+      <SEO title={category.name} />
       <div className="container">
         <nav className="list-filter">
           <ul>
-            {categories.map(({ slug, name, count }) => {
+            <li>
+              <Link to={`/projects/`} activeClassName="active">
+              所有
+              </Link>
+            </li>
+            {categories.map(({ slug, name }) => {
               return (
                 <li key={slug}>
-                  <Link to={`/${slug}/`} activeClassName="active" partiallyActive>
-                    {name} <span className="sep">···</span> {count}
+                  <Link
+                    to={`/${slug}/`}
+                    activeClassName="active"
+                    partiallyActive
+                  >
+                    {name}
                   </Link>
                 </li>
               );
@@ -27,7 +39,7 @@ export default ({ data, pageContext }) => {
           </ul>
         </nav>
         <div className="chrono-list">
-          <ProjectList items={posts} title={`最新${category.name}${category.name === '项目' ? '' : '项目'}`} />
+          <ProjectList items={posts} />
           <Pagination pageContext={pageContext} pathPrefix="/" />
         </div>
       </div>
@@ -36,18 +48,25 @@ export default ({ data, pageContext }) => {
 };
 
 export const pageQuery = graphql`
-  query CategoryPosts($limit: Int!, $skip: Int!, $slug: String!) {
-    allWordpressCategory(
-      filter: { count: { gt: 0 }, parent_element: { slug: { eq: "projects" } } }
+  query CategoryPosts($limit: Int!, $skip: Int!, $slug: String!, $parent: String) {
+    categorySiblings: allWordpressCategory(
+      filter: { count: { gt: 0 }, parent_element: { slug: { eq: $parent } } }
     ) {
       nodes {
         name
         slug
         path
         count
-        parent_element {
-          slug
-        }
+      }
+    }
+    categoryChildren: allWordpressCategory(
+      filter: { count: { gt: 0 }, parent_element: { slug: { eq: $slug } } }
+    ) {
+      nodes {
+        name
+        slug
+        path
+        count
       }
     }
     wordpressCategory(slug: { eq: $slug }) {

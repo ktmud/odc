@@ -4,9 +4,9 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import HomeGallery from '../components/homegallery';
 
-export default ({ data }) => {
+export default ({ data, location }) => {
   return (
-    <Layout className="homepage">
+    <Layout className="homepage" location={location}>
       <SEO title="odc studios" />
       <HomeGallery items={data.allWordpressPost.nodes} />
     </Layout>

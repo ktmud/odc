@@ -78,7 +78,7 @@
     text-decoration: none;
     display: block;
     position: relative;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(#fff, 0.05);
   }
 
   a:after {
@@ -97,20 +97,22 @@
       right: 0;
       margin: 0;
       height: 100%;
+      transition-duration: $transition-duration + 0.2s;
     }
     &:hover:after {
-      background-color: rgba($odc-orange, 0.45);
+      background-color: rgba($odc-orange, 0.5);
     }
     &:hover {
       .meta {
-        transform: scale(1.15);
+        opacity: 1;
       }
-      // img {
-      //   filter: blur(2px);
-      // }
+      img {
+        filter: blur(1px);
+      }
     }
   }
   .meta {
+    opacity: 0;
     position: absolute;
     height: auto;
     left: 0;
@@ -130,6 +132,7 @@
     text-align: left;
     bottom: 5%;
     font-size: 1.1em;
+    opacity: 1;
   }
 }
 

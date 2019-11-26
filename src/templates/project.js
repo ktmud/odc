@@ -4,12 +4,13 @@ import Layout from '../components/layout';
 import { Link, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import WordpressContent from '../components/wordpressContent';
+import SEO from '../components/seo';
 
 const acfFields = [
+  ['venue_type', '场所类型'],
   ['loc', '地址'],
   ['started_on', '项目开始时间'],
   ['completed_on', '项目完成时间'],
-  // ['venue_type', '场所类型'],
 ];
 
 export const ProjectPage = ({
@@ -26,7 +27,7 @@ export const ProjectPage = ({
         return (
           <Fragment key={tag.slug}>
             {/* <a>{tag.name}</a> */}
-            <Link to={`/program/${tag.slug}`}>{tag.name}</Link>
+            <Link to={`/tag/${tag.slug}`}>{tag.name}</Link>
             <span className="sep">/</span>
           </Fragment>
         );
@@ -92,11 +93,12 @@ ProjectPage.propTypes = {
   content: PropTypes.string,
 };
 
-const Page = ({ data }) => {
+const Page = ({ data, location }) => {
   const { wordpressPost: page } = data;
 
   return (
-    <Layout className="post-page project-page">
+    <Layout className="post-page project-page" location={location}>
+      <SEO title={page.title} />
       <ProjectPage {...page} />
     </Layout>
   );
@@ -122,19 +124,7 @@ export const pageQuery = graphql`
         }
         started_on
       }
-      featured_media {
-        alt_text
-        caption
-        source_url
-        title
-        localFile {
-          childImageSharp {
-            fluid(jpegQuality: 95, jpegProgressive: true, fit: COVER) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
-      }
+      ...PostImageFields
       type
       title
       sticky

@@ -23,6 +23,14 @@ exports.createPages = async ({ graphql, actions }) => {
           status
         }
       }
+      allWordpressCategory(filter: { count: { gt: 0 } }) {
+        nodes {
+          slug
+          parent_element {
+            slug
+          }
+        }
+      }
       allWordpressPost {
         nodes {
           id
@@ -45,6 +53,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const pages = filterPublished(result.data.allWordpressPage.nodes);
   const posts = filterPublished(result.data.allWordpressPost.nodes);
+  const categories = result.data.allWordpressCategory.nodes;
 
   const getTemplate = (pageType) => {
     return slash(path.resolve(`./src/templates/${pageType}.js`));
@@ -94,6 +103,12 @@ exports.createPages = async ({ graphql, actions }) => {
       collectToDict(node, postsByVenueType, node.acf.venue_type);
     }
   });
+  // give each category a parent
+  categories.forEach((node) => {
+    if (node.parent_element) {
+      postsByCategory[node.slug].parent = node.parent_element.slug;
+    }
+  });
 
   const genIndexes = (dict, taxotype) => {
     // for category taxonomy, dont add a prefix, use the slug itself as the root subfolder
@@ -108,10 +123,11 @@ exports.createPages = async ({ graphql, actions }) => {
         component: getTemplate(`${taxotype}-items`),
         context: {
           slug: cat,
+          parent: items.parent || null
         },
       });
     }
   };
   genIndexes(postsByCategory, 'category');
-  genIndexes(postsByVenueType, 'program');
+  genIndexes(postsByVenueType, 'tag');
 };

@@ -21,10 +21,11 @@ export default ({ items }) => {
       height,
     };
   });
-  let slidesPhotos = photos.filter((x) => x.sticky);
-  if (slidesPhotos.length === 0) {
-    slidesPhotos = photos.splice(0, 2);
-  }
+  // let slidesPhotos = photos.filter((x) => x.sticky);
+  // if (slidesPhotos.length === 0) {
+  //   slidesPhotos = photos.splice(0, 4);
+  // }
+  const slidesPhotos = photos.splice(0, 4);
   slidesPhotos.forEach((x) => {
     x.width = '';
     x.height = '100%';
@@ -37,7 +38,7 @@ export default ({ items }) => {
       return GalleryItem(photo);
     },
     margin: 0,
-    targetRowHeight: 420,
+    targetRowHeight: 320,
   };
 
   const sliderSettings = {
@@ -52,7 +53,7 @@ export default ({ items }) => {
   return (
     <div className="home-gallery">
       <Slider className="hero-image" {...sliderSettings}>
-        {slidesPhotos.map(photo => <GalleryItem key={photo.path} {...photo} />)}
+        {slidesPhotos.map(photo => <GalleryItem key={photo.path} {...photo} showCaption />)}
       </Slider>
       <Gallery {...settings} />
     </div>

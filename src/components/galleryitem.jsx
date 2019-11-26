@@ -12,8 +12,9 @@ export const GalleryItemPropType = PropTypes.shape({
   height: PropTypes.number,
 });
 
-export default ({ width, height, path, title, image, className }) => {
+export default ({ width, height, path, title, image, className, showCaption = false }) => {
   image = image || {};
+  const caption = showCaption && image.caption;
   return (
     <div
       className={`gallery-item ${className}`}
@@ -31,13 +32,16 @@ export default ({ width, height, path, title, image, className }) => {
             title={image.title}
           />
         ) : null}
-        {title || image.caption ? (
-          <div className="meta container">
+        {title || caption ? (
+          <div
+            className="meta container"
+            style={image.localFile ? null : { opacity: 1 }}
+          >
             <h3>{title}</h3>
-            {image.caption ? (
+            {caption ? (
               <div
                 className="caption"
-                dangerouslySetInnerHTML={{ __html: image.caption }}
+                dangerouslySetInnerHTML={{ __html: caption }}
               />
             ) : null}
           </div>

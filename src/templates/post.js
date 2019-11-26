@@ -2,12 +2,14 @@ import React from 'react';
 import Layout from '../components/layout';
 import { graphql } from 'gatsby';
 import WordpressContent from '../components/wordpressContent';
+import SEO from '../components/seo';
 
-export default function PostPage({ data }) {
+export default function PostPage({ data, location }) {
   const { wordpressPost: post } = data;
   const { title, content } = post;
   return (
-    <Layout className="post-page">
+    <Layout className="post-page" location={location}>
+      <SEO title={title} />
       <div className="container">
         <h1 className="title">{title}</h1>
         <WordpressContent content={content} />

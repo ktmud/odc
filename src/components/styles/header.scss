@@ -1,4 +1,11 @@
 .main-header {
+  padding-left: 1em;
+  padding-right: 1em;
+  nav {
+    max-width: 1760px;
+    margin-left: auto;
+    margin-right: auto;
+  }
   font-size: 1.1em;
   text-transform: uppercase;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -14,14 +21,16 @@
   z-index: 100;
   transition: all $transition-duration;
 
-  a {
-    transition: none;
-    line-height: 1.5;
-  }
-
   nav {
     margin: 0 auto;
     transition: all $transition-duration;
+  }
+  .nav {
+    a {
+      @include hover-highlight();
+      line-height: 1;
+      padding-top: 0.35em;
+    }
   }
   .logo {
     display: inline-block;
@@ -63,7 +72,8 @@ header .nav {
   }
   li a {
     display: inline-block;
-    &, &:after {
+    &,
+    &:after {
       transition: background $transition-duration;
     }
   }

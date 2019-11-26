@@ -18,6 +18,7 @@
     "gatsby-source-filesystem": "^2.1.37",
     "gatsby-source-wordpress": "^3.1.49",
     "gatsby-transformer-sharp": "^2.3.5",
+    "gatsby-wordpress-inline-images": "^1.0.0",
     "node-sass": "^4.13.0",
     "node-static": "^0.7.11",
     "prop-types": "^15.7.2",

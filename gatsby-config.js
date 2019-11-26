@@ -1,6 +1,9 @@
-require("dotenv").config({
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV || 'development'}`,
-})
+});
+
+const baseUrl = process.env.WORDPRESS_BASEURL || 'localhost:1880';
+const protocol = 'http';
 
 module.exports = {
   siteMetadata: {
@@ -12,18 +15,21 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        // your WordPress source
-        baseUrl: process.env.WORDPRESS_BASEURL,
-        // baseUrl: `localhost:1880`,
-        protocol: `http`,
+        baseUrl,
+        protocol,
         // is it hosted on wordpress.com, or self-hosted?
         hostingWPCOM: false,
         // does your site use the Advanced Custom Fields Plugin?
         useACF: true,
-        searchAndReplaceContentUrls: {
-          sourceUrl: 'http://content.odcstudios.com',
-          replacementUrl: 'http://www.odcstudios.com',
-        },
+        // plugins: [
+        //   {
+        //     resolve: `gatsby-wordpress-inline-images`,
+        //     options: {
+        //       baseUrl,
+        //       protocol,
+        //     },
+        //   },
+        // ],
         includedRoutes: [
           '**/taxonomies',
           '**/categories',
@@ -68,7 +74,7 @@ module.exports = {
             debug: true,
             sourceMap: true, //default is false
           },
-        }
+        },
       },
     },
     `gatsby-plugin-styled-components`,
