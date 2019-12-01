@@ -15,7 +15,7 @@ export default ({ data, pageContext, location }) => {
   return (
     <Layout className="list-page" location={location}>
       <SEO title={category.name} />
-      <div className="container">
+      <div className="container-full">
         <nav className="list-filter">
           <ul>
             <li>

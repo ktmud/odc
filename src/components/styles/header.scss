@@ -1,12 +1,12 @@
 .main-header {
   padding-left: 1em;
   padding-right: 1em;
+  font-size: 1.1em;
   nav {
     max-width: 1760px;
     margin-left: auto;
     margin-right: auto;
   }
-  font-size: 1.1em;
   text-transform: uppercase;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   font-weight: 500;
@@ -44,31 +44,24 @@
       display: inline-block;
       vertical-align: middle;
       transition: all $transition-duration;
-      &.logo-icon {
-        height: 82px;
-        margin-right: 28px;
-      }
-      &.logo-text {
-        margin-top: 3%;
-      }
+    }
+    .logo-icon {
+      height: 82px;
+      margin-right: 28px;
+    }
+    .logo-text {
+      margin-top: 1%;
     }
   }
 }
 
 header .nav {
-  margin-top: 0.8em;
-  line-height: 60px;
-  font-size: 18px;
+  line-height: 82px;
+  font-size: $base-font-size + 2px;
 
   li {
     display: inline-block;
-    margin-left: 54px;
-    a.current {
-      color: $odc-orange;
-      &:after {
-        background-color: $odc-orange;
-      }
-    }
+    margin-left: 2em;
   }
   li a {
     display: inline-block;
@@ -79,33 +72,29 @@ header .nav {
   }
 }
 
-body[data-scrolled='1'] {
-  .post-page,
-  .list-page {
-    .main-header {
-      background: $odc-gray;
-      .nav {
-        font-size: 16px;
-        line-height: 44px;
-        li {
-          margin-left: 36px;
-          margin-right: 12px;
-        }
-        a:after {
-          margin-top: -5px;
-        }
+@mixin shrink-header() {
+  $header-height: 55px;
+  .main-header {
+    background: rgba($odc-gray, 1);
+    .nav {
+      font-size: $base-font-size;
+      line-height: $header-height;
+    }
+    .logo {
+      height: $header-height;
+      .logo-icon {
+        height: $header-height;
+        margin-right: 23px;
       }
-      .logo {
-        .logo-icon {
-          height: 64px;
-          margin-right: 23px;
-        }
-        .logo-text {
-          height: 23px;
-        }
+      .logo-text {
+        height: 23px;
       }
     }
   }
+}
+
+body[data-scrolled='1'] {
+  @include shrink-header();
   .list-page {
     .main-header {
       background: darken($odc-gray, 4);
@@ -114,10 +103,14 @@ body[data-scrolled='1'] {
 }
 
 @media (max-width: $reflex-md) {
-  .main-header .logo {
-    transform: scale(0.9);
-    transform-origin: left;
-    margin-top: -4px;
+  .main-header {
+    padding-left: 0;
+    .logo {
+      .logo-icon {
+        height: 60px;
+        margin-right: 1em;
+      }
+    }
   }
   header .nav {
     line-height: 50px;
@@ -129,7 +122,6 @@ body[data-scrolled='1'] {
     .post-page,
     .list-page {
       .main-header {
-        height: 53px;
         overflow: hidden;
         .nav {
           margin-top: 0.5em;
@@ -140,10 +132,6 @@ body[data-scrolled='1'] {
 }
 
 @media (max-width: $reflex-sm), (max-height: 380px) {
-  .main-header .logo {
-    transform: scale(0.85);
-    margin-top: -6px;
-  }
   header .nav {
     line-height: 50px;
     li {
@@ -161,7 +149,7 @@ body[data-scrolled='1'] {
   header .nav {
     font-size: $base-font-size;
     li {
-      margin-left: 1em;
+      margin-left: 0.5em;
     }
   }
 }

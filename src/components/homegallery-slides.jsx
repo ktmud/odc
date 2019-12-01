@@ -3,8 +3,6 @@ import Slider from 'react-slick';
 import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 
-import './homegallery.scss';
-
 export default ({ items }) => {
   const settings = {
     dots: true,

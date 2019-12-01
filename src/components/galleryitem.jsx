@@ -15,9 +15,10 @@ export const GalleryItemPropType = PropTypes.shape({
 export default ({ width, height, path, title, image, className, showCaption = false }) => {
   image = image || {};
   const caption = showCaption && image.caption;
+
   return (
     <div
-      className={`gallery-item ${className}`}
+      className={`gallery-item ${className || ''}`}
       key={path}
       style={{
         width,
@@ -62,12 +63,8 @@ export const pageQuery = graphql`
         childImageSharp {
           fluid(
             quality: 97
-            jpegQuality: 97
-            webpQuality: 97
             jpegProgressive: true
             fit: COVER
-            maxWidth: 1960
-            maxHeight: 1024
           ) {
             ...GatsbyImageSharpFluid_withWebp
             presentationWidth

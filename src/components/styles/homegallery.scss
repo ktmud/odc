@@ -49,6 +49,10 @@
 }
 
 .home-gallery {
+  h2 {
+    font-size: 1.3em;
+    margin: 2em $reflex-grid-spacing * 2 1em;
+  }
   .slick-track {
     .gatsby-image-wrapper {
       height: 100vh;
@@ -84,6 +88,13 @@
   a:after {
     display: none;
   }
+
+  .react-photo-gallery--gallery {
+    margin: 0 -2.5px;
+    .gallery-item {
+      margin: 2px;
+    }
+  }
   .react-photo-gallery--gallery a:link {
     .meta {
       transition: all $transition-duration;
@@ -118,7 +129,7 @@
     left: 0;
     right: 0;
     z-index: 2;
-    bottom: 42%;
+    bottom: 43%;
     text-align: center;
     padding: 0.5em 1em;
     border-radius: 2px;
@@ -130,11 +141,53 @@
   }
   .hero-image .meta {
     text-align: left;
-    bottom: 5%;
+    bottom: 10%;
     font-size: 1.1em;
     opacity: 1;
   }
 }
 
-.galler-item {
+.container-full {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: $max-width;
+  .react-photo-gallery--gallery {
+    padding-left: $reflex-grid-spacing * 2;
+    padding-right: $reflex-grid-spacing * 2;
+  }
+}
+@media (max-width: $reflex-md) {
+  .container-full {
+    .react-photo-gallery--gallery {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+.logo-wall {
+  text-align: center;
+  img {
+    display: inline-block;
+    margin: 1.2em 0.8em;
+    height: 52px;
+    @media (max-width: $reflex-md) {
+      & {
+        height: 48px;
+        margin: 0.8em;
+      }
+    }
+    @media (max-width: 812px) {
+      & {
+        height: 42px;
+        margin: 0.7em;
+      }
+    }
+    @media (max-width: $reflex-xs) {
+      & {
+        height: 32px;
+        margin: 0.5em 0.6em;
+      }
+    }
+  }
 }

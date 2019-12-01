@@ -1,0 +1,51 @@
+footer {
+  font-size: 0.75rem;
+  padding: 1em;
+  background: #333;
+  color: #888;
+  // background: $odc-orange;
+  // color: #fff;
+  text-align: center;
+
+  p {
+    margin: 0 0 0.9em;
+    line-height: 1.5em;
+  }
+  .contact-info {
+    display: inline-block;
+  }
+  span {
+    display: inline-block;
+  }
+}
+
+a.content {
+  display: block;
+  transition: all $transition-duration * 2;
+  &:hover:after {
+    display: none;
+  }
+}
+
+.post-list .content {
+  margin-bottom: 1.5em;
+  padding: 2em;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba($color: $odc-orange, $alpha: 0.4);
+  &:hover {
+    background: rgba($color: $odc-orange, $alpha: 0.8);
+  }
+  border-radius: 2px;
+  h3 {
+    margin-top: 0;
+  }
+}
+
+table {
+  border-collapse: collapse;
+}
+
+
+.no-padding {
+  padding: 0;
+}

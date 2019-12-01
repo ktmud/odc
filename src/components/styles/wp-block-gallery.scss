@@ -1,15 +1,14 @@
-$grid-size-large: 2px;
+$grid-size-large: 3px;
 $default-font-size: $base-font-size;
 $white: #fff;
 $black: #000;
 $break-small: 600px;
 $content-width: 35em;
 
-
 @mixin break-small() {
-	@media (min-width: #{ ($break-small) }) {
-		@content;
-	}
+  @media (min-width: #{ ($break-small) }) {
+    @content;
+  }
 }
 
 .wp-block-gallery,
@@ -24,7 +23,7 @@ $content-width: 35em;
   .blocks-gallery-image,
   .blocks-gallery-item {
     // Add space between thumbnails, and unset right most thumbnails later.
-    margin: 0 $grid-size-large $grid-size-large 0;
+    margin: 0 0 $grid-size-large 0;
     display: flex;
     flex-grow: 1;
     flex-direction: column;
@@ -100,24 +99,27 @@ $content-width: 35em;
     }
   }
 
-  // On mobile and responsive viewports, we allow only 1 or 2 columns at the most.
-  & .blocks-gallery-image,
-  & .blocks-gallery-item {
-    width: calc((100% - #{$grid-size-large}) / 2);
-
-    &:nth-of-type(even) {
-      margin-right: 0;
-    }
-  }
-
   &.columns-1 .blocks-gallery-image,
   &.columns-1 .blocks-gallery-item {
     width: 100%;
-    margin-right: 0;
   }
 
   // Beyond mobile viewports, we allow up to 8 columns.
   @include break-small {
+    // On mobile and responsive viewports, we allow only 1 or 2 columns at the most.
+    & .blocks-gallery-image,
+    & .blocks-gallery-item {
+      &:nth-of-type(odd) {
+        margin-right: $grid-size-large;
+      }
+    }
+
+    & .blocks-gallery-image,
+    & .blocks-gallery-item {
+      width: calc((100% - #{$grid-size-large}) / 2);
+      margin-right: 0;
+    }
+
     @for $i from 3 through 8 {
       &.columns-#{ $i } .blocks-gallery-image,
       &.columns-#{ $i } .blocks-gallery-item {

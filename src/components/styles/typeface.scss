@@ -48,19 +48,25 @@ blockquote,
 ul,
 ol,
 table {
+  margin-top: 0.2em;
   margin-bottom: 1.15em;
   line-height: inherit;
 }
 
 p {
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  line-height: 1.5em;;
+  line-height: 1.5em;
   font-family: 'Segoe UI', Arial, sans-serif;
   font-size: $base-font-size;
+}
+@media (min-width: $reflex-lg) {
+  body {
+    font-size: $base-font-size + 2px;
+  }
 }
 
 h1 {
@@ -68,7 +74,8 @@ h1 {
   height: auto;
 }
 
-ul, ol {
+ul,
+ol {
   margin-left: 0;
   padding: 0;
 }

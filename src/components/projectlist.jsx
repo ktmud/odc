@@ -23,11 +23,11 @@ export default ({ items, title }) => {
     renderImage({ photo }) {
       return <GalleryItem key={photo.path} {...photo} />;
     },
-    margin: 0,
-    targetRowHeight: 420,
+    margin: 2,
+    targetRowHeight: 340,
   };
   return (
-    <div className="container home-gallery">
+    <div className="container-full home-gallery">
       {title ? <h1>{title}</h1> : null}
       <Gallery {...settings} />
     </div>
