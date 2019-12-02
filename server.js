@@ -76,7 +76,7 @@ function startServer() {
           file.serve(req, res, (e) => {
             if (e && e.status === 404) {
               // If the file wasn't found
-              file.serveFile('/404.html', 404, {}, req, res);
+              file.serveFile('/404/index.html', 404, {}, req, res);
             }
           });
         }
