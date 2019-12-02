@@ -6,7 +6,7 @@ ARG NPM_REGISTRY=https://registry.npm.taobao.org
 COPY package*.json ./
 RUN env NODE_ENV=${NODE_ENV} npm install --registry ${NPM_REGISTRY}
 
-RUN apt install -y build-essential libpng-dev
+RUN apt-get update && apt-get install -y build-essential libpng-dev
 
 
 COPY src /app/src
