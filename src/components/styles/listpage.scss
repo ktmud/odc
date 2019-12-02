@@ -16,7 +16,7 @@
     padding: 0 0.8em;
     list-style: none;
     position: relative;
-    &:after {
+    &:after, &:first-child:before {
       position: absolute;
       right: -1px;
       content: "";
@@ -24,6 +24,10 @@
       height: 0.7em;
       border-right: 2px solid rgba(#fff, 1);
       display: inline-block;
+    }
+    &:first-child:before {
+      right: auto;
+      left: -1px;
     }
   }
   a {

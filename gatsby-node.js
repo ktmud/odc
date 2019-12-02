@@ -26,6 +26,7 @@ exports.createPages = async ({ graphql, actions }) => {
       allWordpressCategory(filter: { count: { gt: 0 } }) {
         nodes {
           slug
+          path
           parent_element {
             slug
           }
@@ -71,7 +72,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
     createPage({
       // will be the url for the page
-      path: `${node.path}`,
+      path: decodeURIComponent(`${node.path}`),
       // specify the component template of your choice
       component: tmpl,
       // In the ^template's GraphQL query, 'id' will be available
@@ -103,27 +104,31 @@ exports.createPages = async ({ graphql, actions }) => {
       collectToDict(node, postsByVenueType, node.acf.venue_type);
     }
   });
-  // give each category a parent
+
+  // give each category a parent, and update add their path
   categories.forEach((node) => {
     if (node.parent_element) {
       postsByCategory[node.slug].parent = node.parent_element.slug;
     }
+    postsByCategory[node.slug].path = (node.path || `/${node.slug}/`).replace(
+      '/category/',
+      '',
+    );
   });
 
   const genIndexes = (dict, taxotype) => {
-    // for category taxonomy, dont add a prefix, use the slug itself as the root subfolder
-    const prefix = taxotype === 'category' ? '' : `/${taxotype}`;
-    for (let [cat, items] of Object.entries(dict)) {
+    for (let [key, items] of Object.entries(dict)) {
+      const path = items.path || `/${taxotype}/${key}/`;
       paginate({
         createPage,
         items,
         itemsPerPage: 10,
         pathPrefix: ({ pageNumber }) =>
-          pageNumber === 0 ? `${prefix}/${cat}/` : `${prefix}/${cat}/page`,
+          pageNumber === 0 ? `${path}` : `${path}/page`,
         component: getTemplate(`${taxotype}-items`),
         context: {
-          slug: cat,
-          parent: items.parent || null
+          slug: key,
+          parent: items.parent || null,
         },
       });
     }

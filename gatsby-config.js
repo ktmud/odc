@@ -40,7 +40,7 @@ module.exports = {
           '**/*/*/menus',
           '**/*/*/menus-locations',
         ],
-        concurrentRequests: 2,
+        concurrentRequests: 5,
         keepMediaSizes: true,
       },
     },

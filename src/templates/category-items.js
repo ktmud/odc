@@ -1,11 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import Layout from '../components/layout';
-import PostList from '../components/postlist';
 import Pagination from '../components/pagination';
 import ProjectList from '../components/projectlist';
 import SEO from '../components/seo';
+import TaxoNav from '../components/taxo-nav';
 
 export default ({ data, pageContext, location }) => {
   const { nodes: posts } = data.allWordpressPost;
@@ -16,28 +15,11 @@ export default ({ data, pageContext, location }) => {
     <Layout className="list-page" location={location}>
       <SEO title={category.name} />
       <div className="container-full">
-        <nav className="list-filter">
-          <ul>
-            <li>
-              <Link to={`/projects/`} activeClassName="active">
-              所有
-              </Link>
-            </li>
-            {categories.map(({ slug, name }) => {
-              return (
-                <li key={slug}>
-                  <Link
-                    to={`/${slug}/`}
-                    activeClassName="active"
-                    partiallyActive
-                  >
-                    {name}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
+        <TaxoNav
+          items={categories}
+          toAll={{ path: '/projects/', name: '所有项目' }}
+          taxotype="category"
+        />
         <div className="chrono-list">
           <ProjectList items={posts} />
           <Pagination pageContext={pageContext} pathPrefix="/" />
@@ -48,7 +30,12 @@ export default ({ data, pageContext, location }) => {
 };
 
 export const pageQuery = graphql`
-  query CategoryPosts($limit: Int!, $skip: Int!, $slug: String!, $parent: String) {
+  query CategoryPosts(
+    $limit: Int!
+    $skip: Int!
+    $slug: String!
+    $parent: String
+  ) {
     categorySiblings: allWordpressCategory(
       filter: { count: { gt: 0 }, parent_element: { slug: { eq: $parent } } }
     ) {

@@ -1,18 +1,20 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../components/layout';
-import PostList from '../components/postlist';
 import Pagination from '../components/pagination';
+import ProjectList from '../components/projectlist';
+import SEO from '../components/seo';
+import TaxoNav from '../components/taxo-nav';
 
 export default ({ data, pageContext, location }) => {
   const { nodes: posts, pageInfo } = data.allWordpressPost;
+  const { nodes: tags } = data.allWordpressTag;
   const tag = data.wordpressTag;
   return (
     <Layout className="list-page" location={location}>
-      <PostList
-        posts={posts}
-        title={`所有 ${tag.name} 项目 (共 ${pageInfo.itemCount} 项)`}
-      />
+      <SEO title={tag.name} />
+      <TaxoNav items={tags} />
+      <ProjectList items={posts} />
       <Pagination pageContext={pageContext} pathPrefix="/" />
     </Layout>
   );
@@ -23,6 +25,12 @@ export const pageQuery = graphql`
     wordpressTag(slug: { eq: $slug }) {
       id
       name
+    }
+    allWordpressTag {
+      nodes {
+        name
+        slug
+      }
     }
     allWordpressPost(
       sort: { fields: date, order: DESC }

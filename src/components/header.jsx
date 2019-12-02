@@ -1,4 +1,4 @@
-import { Link, useStaticQuery } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Logo from '../images/odc-logo.svg';
