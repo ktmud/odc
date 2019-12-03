@@ -73,7 +73,7 @@ export const pageQuery = graphql`
             quality: 98
             fit: COVER
             maxWidth: 2560
-            srcSetBreakpoints: [320, 420, 800, 1200, 1600]
+            srcSetBreakpoints: [420, 1600, 2560]
           ) {
             ...GatsbyImageSharpFluid_withWebp
             presentationWidth
