@@ -115,19 +115,16 @@ body[data-scrolled='1'] {
   }
   header .nav {
     line-height: 50px;
-    margin-top: 5px;
+    margin-top: 10px;
     li {
       margin-left: 2.4em;
     }
   }
   body[data-scrolled='1'] {
-    .post-page,
-    .list-page {
-      .main-header {
-        overflow: hidden;
-        .nav {
-          margin-top: 0;
-        }
+    .main-header {
+      overflow: hidden;
+      .nav {
+        margin-top: 0;
       }
     }
   }

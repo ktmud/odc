@@ -65,11 +65,12 @@
   @media (max-width: $reflex-xs) {
     & {
       float: none;
-      margin-left: auto;
+      margin-left: 0;
       margin-right: auto;
       th,
       td {
-        padding: 0.1em 0.6em;
+        padding: 0.1em 1em;
+        padding-left: 0;
       }
       th {
         width: auto;
