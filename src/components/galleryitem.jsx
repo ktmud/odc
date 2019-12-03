@@ -70,7 +70,7 @@ export const pageQuery = graphql`
       localFile {
         childImageSharp {
           fluid(
-            quality: 96
+            quality: 98
             fit: COVER
             maxWidth: 2560
             srcSetBreakpoints: [320, 420, 800, 1200, 1600]
