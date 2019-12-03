@@ -164,30 +164,3 @@
     }
   }
 }
-
-.logo-wall {
-  text-align: center;
-  img {
-    display: inline-block;
-    margin: 1.2em 0.8em;
-    height: 52px;
-    @media (max-width: $reflex-md) {
-      & {
-        height: 48px;
-        margin: 0.8em;
-      }
-    }
-    @media (max-width: 812px) {
-      & {
-        height: 42px;
-        margin: 0.7em;
-      }
-    }
-    @media (max-width: $reflex-xs) {
-      & {
-        height: 32px;
-        margin: 0.5em 0.6em;
-      }
-    }
-  }
-}

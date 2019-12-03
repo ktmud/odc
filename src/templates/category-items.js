@@ -34,6 +34,7 @@ export const pageQuery = graphql`
     $limit: Int!
     $skip: Int!
     $slug: String!
+    $slugregex: String!
     $parent: String
   ) {
     categorySiblings: allWordpressCategory(
@@ -62,7 +63,7 @@ export const pageQuery = graphql`
     }
     allWordpressPost(
       sort: { fields: date, order: DESC }
-      filter: { categories: { elemMatch: { slug: { eq: $slug } } } }
+      filter: { categories: { elemMatch: { path: { regex: $slugregex } } } }
       limit: $limit
       skip: $skip
     ) {

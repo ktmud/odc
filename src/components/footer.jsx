@@ -4,12 +4,7 @@ import Logo from '../images/odc-logo.svg';
 const Footer = ({ meta }) => {
   return (
     <footer>
-      <img style={{
-        width: 56,
-        height: 56,
-        marginTop: '-3em',
-        marginBottom: '1em'
-      }} className="logo-icon" src={Logo} alt="" />
+      <img className="logo-icon" src={Logo} alt="" />
       <div className="container">
         <div className="copyright">
           <p>

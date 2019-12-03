@@ -1,8 +1,14 @@
 .list-filter {
-  margin: 2em 0;
+  margin: 2em 1em;
   font-size: 1.2em;
   line-height: 1;
   text-align: center;
+
+  @media (max-width: $reflex-md) {
+    & {
+      font-size: 1.05em;
+    }
+  }
   .sep {
     opacity: 0.3;
     display: inline-block;
@@ -13,25 +19,29 @@
   }
   li {
     display: inline-block;
-    padding: 0 0.8em;
+    padding: 0.2em 0.8em;
     list-style: none;
     position: relative;
-    &:after, &:first-child:before {
+    &:after,
+    &:before {
       position: absolute;
       right: -1px;
-      content: "";
-      top: 0.4em;
+      content: '';
+      top: 0.65em;
       height: 0.7em;
       border-right: 2px solid rgba(#fff, 1);
       display: inline-block;
     }
-    &:first-child:before {
+    &:before {
       right: auto;
       left: -1px;
     }
   }
   a {
     @include hover-highlight();
+    line-height: 1.6;
+    padding-top: 0em;
+    padding-bottom: 0em;
   }
 }
 

@@ -41,6 +41,7 @@ exports.createPages = async ({ graphql, actions }) => {
           status
           categories {
             slug
+            path
           }
           acf {
             venue_type {
@@ -64,7 +65,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const { categories } = node;
     const isPage = !categories;
     const isProject =
-      categories && categories.some((x) => x.slug === 'projects');
+      categories && categories.some((x) => x.path.indexOf('projects') != -1);
     const pageType = isPage ? 'page' : isProject ? 'project' : 'post';
     const tmpl = getTemplate(pageType);
 
@@ -104,14 +105,13 @@ exports.createPages = async ({ graphql, actions }) => {
       collectToDict(node, postsByVenueType, node.acf.venue_type);
     }
   });
-
   // give each category a parent, and update add their path
   categories.forEach((node) => {
     if (node.parent_element) {
       postsByCategory[node.slug].parent = node.parent_element.slug;
     }
     postsByCategory[node.slug].path = (node.path || `/${node.slug}/`).replace(
-      '/category/',
+      '/category',
       '',
     );
   });
@@ -128,6 +128,7 @@ exports.createPages = async ({ graphql, actions }) => {
         component: getTemplate(`${taxotype}-items`),
         context: {
           slug: key,
+          slugregex: `/\/${key}\//`,
           parent: items.parent || null,
         },
       });

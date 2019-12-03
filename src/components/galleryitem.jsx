@@ -62,7 +62,7 @@ export const pageQuery = graphql`
       localFile {
         childImageSharp {
           fluid(
-            quality: 97
+            quality: 100
             jpegProgressive: true
             fit: COVER
           ) {

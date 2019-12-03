@@ -5,7 +5,7 @@
 .wp-block-gallery .blocks-gallery-item figcaption,
 .blocks-gallery-grid .blocks-gallery-image figcaption,
 .blocks-gallery-grid .blocks-gallery-item figcaption {
-  text-shadow: 0 0 1px rgba(0,0,0,0.4);
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
   background: linear-gradient(
     0deg,
     rgba(0, 0, 0, 0.4) 0,
@@ -15,32 +15,36 @@
 }
 
 .hero-image {
-  margin-top: -110px;
+  margin-top: -$header-logo-height;
   max-height: 75vh;
 }
 
-.project-page h1 {
-  text-align: center;
+.entry-content > h1:first-child {
+  margin-top: 1.5em;
+  height: auto;
+  line-height: 1.2;
 }
 
 .project-details table {
-  width: 100%;
-  max-width: 40em;
-  margin: 3em auto;
-  font-size: 1.05em;
-  border-top: 2px solid $table-border-color;
-  border-bottom: 2px solid $table-border-color;
+  float: right;
+  margin-left: 2em;
+  margin-bottom: 2em;
+  margin-top: -0.4em;
+  border: none;
   line-height: 1.6em;
+  color: #aaa;
+  font-size: 0.95em;
   th,
   td {
-    border-bottom: 1px solid $table-border-color;
-    padding: 0.5em 1em;
+    border: none;
+    padding: 0.2em 1em;
     font-weight: 400;
   }
   th {
-    border-right: 1px solid $table-border-color;
     text-align: right;
-    width: 10em;
+    width: 11em;
+    font-size: 0.85em;
+    color: #888;
   }
   a {
     margin: 0 0.5em;
@@ -56,6 +60,20 @@
     font-weight: 100;
     &:last-child {
       display: none;
+    }
+  }
+  @media (max-width: $reflex-xs) {
+    & {
+      float: none;
+      margin-left: auto;
+      margin-right: auto;
+      th,
+      td {
+        padding: 0.1em 0.6em;
+      }
+      th {
+        width: auto;
+      }
     }
   }
 }

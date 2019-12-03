@@ -6,7 +6,7 @@
 @import './styles/homegallery.scss';
 
 main {
-  padding-top: 110px;
+  padding-top: $header-logo-height;
   padding-bottom: 7em;
   min-height: 90vh;
   min-height: calc(100vh - 100px);

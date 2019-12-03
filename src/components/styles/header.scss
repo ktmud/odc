@@ -1,6 +1,6 @@
 .main-header {
-  padding-left: 1em;
-  padding-right: 1em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
   font-size: 1.1em;
   nav {
     max-width: 1760px;
@@ -46,7 +46,7 @@
       transition: all $transition-duration;
     }
     .logo-icon {
-      height: 82px;
+      height: $header-logo-height;
       margin-right: 28px;
     }
     .logo-text {
@@ -56,7 +56,7 @@
 }
 
 header .nav {
-  line-height: 82px;
+  line-height: $header-logo-height;
   font-size: $base-font-size + 2px;
 
   li {
@@ -105,6 +105,7 @@ body[data-scrolled='1'] {
 @media (max-width: $reflex-md) {
   .main-header {
     padding-left: 0;
+    padding-right: 1em;
     .logo {
       .logo-icon {
         height: 60px;
@@ -114,6 +115,7 @@ body[data-scrolled='1'] {
   }
   header .nav {
     line-height: 50px;
+    margin-top: 5px;
     li {
       margin-left: 2.4em;
     }
@@ -124,7 +126,7 @@ body[data-scrolled='1'] {
       .main-header {
         overflow: hidden;
         .nav {
-          margin-top: 0.5em;
+          margin-top: 0;
         }
       }
     }

@@ -5,12 +5,12 @@ import { graphql } from 'gatsby';
 import WordpressContent from '../components/wordpressContent';
 import SEO from '../components/seo';
 
-export const PageTemplate = ({ title, content }) => {
+export const PageTemplate = ({ title, content, slug }) => {
   return (
     <div className="container">
       <SEO title={title} />
       <h1 className="title">{title}</h1>
-      <WordpressContent className="content" content={content} />
+      <WordpressContent className="content" content={content} slug={slug} />
     </div>
   );
 };
@@ -42,6 +42,7 @@ export const query = graphql`
       title
       content
       path
+      slug
     }
   }
 `;

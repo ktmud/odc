@@ -8,7 +8,8 @@ import SEO from '../components/seo';
 
 const acfFields = [
   ['venue_type', '场所类型'],
-  ['loc', '地址'],
+  ['client', '业主'],
+  ['loc', '位置'],
   ['started_on', '项目开始时间'],
   ['completed_on', '项目完成时间'],
 ];
@@ -35,9 +36,16 @@ export const ProjectPage = ({
     }
     return acf[field];
   };
-  const filteredCategories = categories && categories.filter(({ slug }) => {
-    return slug !== 'uncategoried' && slug !== 'projects';
-  });
+  const filteredCategories =
+    categories &&
+    categories
+      .filter(({ parent_element: parent }) => {
+        return parent && parent.slug == 'projects';
+      })
+      .map(({ path, name }) => ({
+        path: path.replace('/category', ''),
+        name,
+      }));
 
   return (
     <>
@@ -50,37 +58,39 @@ export const ProjectPage = ({
         />
       ) : null}
       <div className="entry">
-        <h1 className="title">{title}</h1>
-        <div className="project-details">
-          <table>
-            <tbody>
-              {filteredCategories ? (
-                <tr key="categories">
-                  <th>项目类型</th>
-                  <td>
-                    {filteredCategories.map(({ slug, name }) => {
-                      return (
-                        <Fragment key={slug}>
-                          {/* <a>{tag.name}</a> */}
-                          <Link to={`/${slug}/`}>{name}</Link>
-                          <span className="sep">/</span>
-                        </Fragment>
-                      );
-                    })}
-                  </td>
-                </tr>
-              ) : null}
-              {acfFields.map(([field, name]) => {
-                if (!acf[field]) return;
-                return (
-                  <tr key={field}>
-                    <th>{name}</th>
-                    <td>{getFieldVal(field)}</td>
+        <div className="entry-content">
+          <h1 className="title">{title}</h1>
+          <div className="project-details">
+            <table>
+              <tbody>
+                {filteredCategories && filteredCategories.length > 0 ? (
+                  <tr key="categories">
+                    <th>项目类型</th>
+                    <td>
+                      {filteredCategories.map(({ path, name }) => {
+                        return (
+                          <Fragment key={path}>
+                            {/* <a>{tag.name}</a> */}
+                            <Link to={path}>{name}</Link>
+                            <span className="sep">/</span>
+                          </Fragment>
+                        );
+                      })}
+                    </td>
                   </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                ) : null}
+                {acfFields.map(([field, name]) => {
+                  if (!acf[field]) return;
+                  return (
+                    <tr key={field}>
+                      <th>{name}</th>
+                      <td>{getFieldVal(field)}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
         <WordpressContent content={content} />
       </div>
@@ -138,8 +148,12 @@ export const pageQuery = graphql`
       content
       excerpt
       categories {
+        path
         slug
         name
+        parent_element {
+          slug
+        }
       }
     }
   }
