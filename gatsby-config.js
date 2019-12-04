@@ -22,6 +22,10 @@ module.exports = {
         hostingWPCOM: false,
         // does your site use the Advanced Custom Fields Plugin?
         useACF: true,
+        searchAndReplaceContentUrls: {
+          sourceUrl: "http://content.odcstudios.com",
+          replacementUrl: "http://wp.odcstudios.com",
+        },
         // plugins: [
         //   {
         //     resolve: `gatsby-wordpress-inline-images`,
