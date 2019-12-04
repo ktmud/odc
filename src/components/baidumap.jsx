@@ -3,8 +3,6 @@ import { useStaticQuery, graphql } from 'gatsby';
 import DEFAULT_STYLE from './baidumap-style.json';
 import MobileDetect from 'mobile-detect';
 
-const md = new MobileDetect(window.navigator.userAgent);
-
 export default ({
   center,
   zoom = 16,
@@ -39,6 +37,7 @@ export default ({
 
   useEffect(() => {
     let unmounted = false;
+    const md = new MobileDetect(window.navigator.userAgent);
 
     const init = () => {
       if (unmounted) return;
