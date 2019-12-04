@@ -89,7 +89,7 @@ export default ({
               isDesktop = true;
             }
             uris.push(
-              `http://api.map.baidu.com/place/detail?uid=${x.placeId}${isDesktop ? '&output=html' : ''}&src=odc.web&zoom=16`,
+              `http://api.map.baidu.com/place/detail?uid=${x.placeId}&output=html&src=odc.web`,
             );
             marker.addEventListener('click', () => {
               for (let uri of uris) {
