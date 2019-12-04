@@ -76,15 +76,15 @@ export default ({
           const marker = new BMap.Marker(point, { icon });
           if (x.invokeURI) {
             let uris = [];
-            if (md.os() === 'iOS' || md.os() === 'iPadOS') {
-              uris.push(
-                `baidumap://map/place/detail?uid=${x.placeId}&src=ios.odc.web`,
-              );
-            } else if (md.os() === 'Android') {
-              uris.push(
-                `baidumap://map/place/detail?uid=${x.placeId}&src=android.odc.web`,
-              );
-            }
+            // if (md.os() === 'iOS' || md.os() === 'iPadOS') {
+            //   uris.push(
+            //     `baidumap://map/place/detail?uid=${x.placeId}&src=ios.odc.web`,
+            //   );
+            // } else if (md.os() === 'Android') {
+            //   uris.push(
+            //     `baidumap://map/place/detail?uid=${x.placeId}&src=android.odc.web`,
+            //   );
+            // }
             uris.push(
               `http://api.map.baidu.com/place/detail?uid=${x.placeId}&output=html&src=desktop.odc.web&zoom=16`,
             );
