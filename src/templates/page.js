@@ -5,6 +5,7 @@ import { graphql } from 'gatsby';
 import WordpressContent from '../components/wordpressContent';
 import SEO from '../components/seo';
 import BaiduMap from '../components/baidumap';
+import H1 from '../components/h1';
 
 const loc = {
   lng: 114.038778,
@@ -19,7 +20,7 @@ const loc = {
   深圳市福田区天安数码时代大厦A座2209 <br>
   电话：+86-755-23823639 <br>
   Email：office@odcstudios.com
-  `
+  `,
 };
 
 export const ContactPageContent = ({ content }) => {
@@ -39,7 +40,7 @@ export const PageTemplate = ({ title, content, slug }) => {
   return (
     <div className="container">
       <SEO title={title} />
-      <h1 className="title">{title}</h1>
+      <H1 className="title inline-title" title={title} />
       {slug === 'contact' ? (
         <ContactPageContent content={content} />
       ) : (
