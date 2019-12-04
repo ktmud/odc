@@ -46,7 +46,7 @@ export default ({
             className="meta container-full"
             style={image.localFile ? null : { opacity: 1 }}
           >
-            <h3>{title}</h3>
+            <h3 className="title" dangerouslySetInnerHTML={{ __html: title }} />
             {caption ? (
               <div
                 className="caption"

@@ -4,7 +4,7 @@ import { Link, graphql } from 'gatsby';
 export default ({ posts, title }) => {
   return (
     <section className="post-list">
-      <h1>{title}</h1>
+      <h1 dangerouslySetInnerHTML={{ __html: title }} />
       {posts.map((post) => (
         <Link key={post.id} className="content" to={post.path}>
           <h3>{post.title}</h3>

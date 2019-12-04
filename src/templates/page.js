@@ -11,6 +11,9 @@ const loc = {
   lat: 22.541259,
   width: 240,
   height: 80,
+  icon: require('../images/odc-marker.svg'),
+  placeId: '4ea3f2f1c3ef9ed7afcb668b', // baidu place UID
+  invokeURI: true,
   title: '城像设计顾问（深圳）有限公司',
   content: `
   深圳市福田区天安数码时代大厦A座2209 <br>

@@ -28,7 +28,7 @@ export default ({ items, title }) => {
   };
   return (
     <div className="container-full home-gallery">
-      {title ? <h1>{title}</h1> : null}
+      {title ? <h1 dangerouslySetInnerHTML={{ __html: title }} /> : null}
       <Gallery {...settings} />
     </div>
   );

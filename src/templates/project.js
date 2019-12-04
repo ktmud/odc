@@ -59,7 +59,7 @@ export const ProjectPage = ({
       ) : null}
       <div className="entry">
         <div className="entry-content">
-          <h1 className="title">{title}</h1>
+          <h1 className="title" dangerouslySetInnerHTML={{ __html: title }} />
           <div className="project-details">
             <table>
               <tbody>

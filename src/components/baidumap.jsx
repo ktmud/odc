@@ -1,6 +1,9 @@
 import React, { createRef, useEffect } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import DEFAULT_STYLE from './baidumap-style.json';
+import MobileDetect from 'mobile-detect';
+
+const md = new MobileDetect(window.navigator.userAgent);
 
 export default ({
   center,
@@ -64,23 +67,54 @@ export default ({
       }
       if (markers) {
         markers.forEach((x) => {
-          const point = new BMap.Point(x.lng, x.lat);
-          const marker = new BMap.Marker(point);
-          if (x.title) {
-            const opts = {
-              width: x.width,
-              height: x.height,
-              title: x.title,
-            };
-            const infoWindow = new BMap.InfoWindow(x.content, opts);
-            marker.addEventListener('click', () => {
-              if (infoWindow.isOpen()) {
-                marker.closeInfoWindow();
-              } else {
-                marker.openInfoWindow(infoWindow);
-              }
-            })
+          let icon = undefined;
+          if (x.icon) {
+            icon = new BMap.Icon(x.icon, new BMap.Size(43, 48), {
+              anchor: new BMap.Size(20, 48),
+            });
           }
+          const point = new BMap.Point(x.lng, x.lat);
+          const marker = new BMap.Marker(point, { icon });
+          if (x.invokeURI) {
+            let uris = [];
+            if (md.os() === 'iOS' || md.os() === 'iPadOS') {
+              uris.push(
+                `baidumap://map/place/detail?uid=${x.placeId}&src=ios.odc.web`,
+              );
+            } else if (md.os() === 'Android') {
+              uris.push(
+                `baidumap://map/place/detail?uid=${x.placeId}&src=android.odc.web`,
+              );
+            }
+            uris.push(
+              `http://api.map.baidu.com/place/detail?uid=${x.placeId}&output=html&src=desktop.odc.web&zoom=16`,
+            );
+            marker.addEventListener('click', () => {
+              for (let uri of uris) {
+                try {
+                  window.open(uri);
+                  break;
+                } catch (err) {
+                  console.log(err);
+                }
+              }
+            });
+          }
+          // if (x.title) {
+          //   const opts = {
+          //     width: x.width,
+          //     height: x.height,
+          //     title: x.title,
+          //   };
+          //   const infoWindow = new BMap.InfoWindow(x.content, opts);
+          //   marker.addEventListener('click', () => {
+          //     // if (infoWindow.isOpen()) {
+          //     //   marker.closeInfoWindow();
+          //     // } else {
+          //     marker.openInfoWindow(infoWindow);
+          //     // }
+          //   });
+          // }
           map.addOverlay(marker);
         });
       }
