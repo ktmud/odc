@@ -5,6 +5,7 @@ import { Link, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import WordpressContent from '../components/wordpressContent';
 import SEO from '../components/seo';
+import H1 from '../components/h1';
 
 const acfFields = [
   ['venue_type', '场所类型'],
@@ -59,7 +60,7 @@ export const ProjectPage = ({
       ) : null}
       <div className="entry">
         <div className="entry-content">
-          <h1 className="title" dangerouslySetInnerHTML={{ __html: title }} />
+          <H1 title={title} />
           <div className="project-details">
             <table>
               <tbody>

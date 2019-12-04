@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 import Gallery from 'react-photo-gallery';
 import GalleryItem, { GalleryItemPropType } from './galleryitem';
 import LogoWall from './logowall';
+import H1 from './h1';
 
 Gallery.propTypes.photos = PropTypes.arrayOf(GalleryItemPropType).isRequired;
 
@@ -55,9 +56,9 @@ export default ({ items }) => {
         {slidesPhotos.map(photo => <GalleryItem key={photo.path} {...photo} showCaption />)}
       </Slider>
     <div className="container-full">
-        <h2>最新项目</h2>
+        <H1 className="title inline-title" title="最新项目 / RECENT PROJECTS" />
         <Gallery {...settings} />
-        <h2>合作伙伴</h2>
+        <H1 className="title inline-title" title="合作伙伴 / CLIENTS" />
         <LogoWall />
       </div>
     </div>

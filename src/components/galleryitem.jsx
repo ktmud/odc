@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import { Link } from 'gatsby';
 import Img from 'gatsby-image';
+import H1 from './h1';
+
 
 export const GalleryItemPropType = PropTypes.shape({
   title: PropTypes.string,
@@ -46,7 +48,7 @@ export default ({
             className="meta container-full"
             style={image.localFile ? null : { opacity: 1 }}
           >
-            <h3 className="title" dangerouslySetInnerHTML={{ __html: title }} />
+            <H1 title={title} />
             {caption ? (
               <div
                 className="caption"

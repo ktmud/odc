@@ -81,7 +81,12 @@ ol {
   padding: 0;
 }
 
-h1, h2, h3 {
+h1 {
+  font-size: 1.6em;
+}
+h1,
+h2,
+h3 {
   font-weight: 400;
 }
 h4 {
@@ -95,4 +100,23 @@ h6 {
 }
 figure {
   margin: 0;
+}
+
+.title {
+  span {
+    display: inline-block;
+  }
+  .en {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 300;
+    display: block;
+    margin-top: 0.2em;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    .project-page & {
+      font-size: 0.85em;
+      color: #aaa;
+      text-shadow: none;
+    }
+  }
 }
