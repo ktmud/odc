@@ -74,24 +74,31 @@ export default ({
           }
           const point = new BMap.Point(x.lng, x.lat);
           const marker = new BMap.Marker(point, { icon });
+          let isDesktop = false;
           if (x.invokeURI) {
             let uris = [];
-            // if (md.os() === 'iOS' || md.os() === 'iPadOS') {
-            //   uris.push(
-            //     `baidumap://map/place/detail?uid=${x.placeId}&src=ios.odc.web`,
-            //   );
-            // } else if (md.os() === 'Android') {
-            //   uris.push(
-            //     `baidumap://map/place/detail?uid=${x.placeId}&src=android.odc.web`,
-            //   );
-            // }
+            if (md.os() === 'iOS' || md.os() === 'iPadOS') {
+              // uris.push(
+              //   `baidumap://map/place/detail?uid=${x.placeId}&src=ios.odc.web`,
+              // );
+            } else if (md.os() === 'Android') {
+              // uris.push(
+              //   `bdapp://map/place/detail?uid=${x.placeId}&src=android.odc.web`,
+              // );
+            } else {
+              isDesktop = true;
+            }
             uris.push(
-              `http://api.map.baidu.com/place/detail?uid=${x.placeId}&output=html&src=desktop.odc.web&zoom=16`,
+              `http://api.map.baidu.com/place/detail?uid=${x.placeId}${isDesktop ? '&output=html' : ''}&src=odc.web&zoom=16`,
             );
             marker.addEventListener('click', () => {
               for (let uri of uris) {
                 try {
-                  window.open(uri);
+                  if (isDesktop)  {
+                    window.open(uri);
+                  } else {
+                    window.location = uri;
+                  }
                   break;
                 } catch (err) {
                   console.log(err);
