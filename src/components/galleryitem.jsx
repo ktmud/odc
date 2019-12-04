@@ -43,7 +43,7 @@ export default ({
         ) : null}
         {title || caption ? (
           <div
-            className="meta container"
+            className="meta container-full"
             style={image.localFile ? null : { opacity: 1 }}
           >
             <h3>{title}</h3>

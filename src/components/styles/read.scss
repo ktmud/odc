@@ -43,7 +43,7 @@
   th {
     text-align: right;
     width: 11em;
-    font-size: 0.85em;
+    font-size: 0.9em;
     color: #888;
   }
   a {
@@ -77,4 +77,14 @@
       }
     }
   }
+}
+
+
+.BMap_bubble_title {
+  font-size: 14px;
+  font-weight: 600;
+}
+.BMap_bubble_content {
+  font-size: 12px;
+  line-height: 1.5;
 }

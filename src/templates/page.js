@@ -4,13 +4,44 @@ import Layout from '../components/layout';
 import { graphql } from 'gatsby';
 import WordpressContent from '../components/wordpressContent';
 import SEO from '../components/seo';
+import BaiduMap from '../components/baidumap';
+
+const loc = {
+  lng: 114.038778,
+  lat: 22.541259,
+  width: 240,
+  height: 80,
+  title: '城像设计顾问（深圳）有限公司',
+  content: `
+  深圳市福田区天安数码时代大厦A座2209 <br>
+  电话：+86-755-23823639 <br>
+  Email：office@odcstudios.com
+  `
+};
+
+export const ContactPageContent = ({ content }) => {
+  return (
+    <div className="grid">
+      <div className="col-md-5">
+        <WordpressContent className="content" content={content} />
+      </div>
+      <div className="col-md-7">
+        <BaiduMap center={loc} markers={[loc]} />
+      </div>
+    </div>
+  );
+};
 
 export const PageTemplate = ({ title, content, slug }) => {
   return (
     <div className="container">
       <SEO title={title} />
       <h1 className="title">{title}</h1>
-      <WordpressContent className="content" content={content} slug={slug} />
+      {slug === 'contact' ? (
+        <ContactPageContent content={content} />
+      ) : (
+        <WordpressContent className="content" content={content} />
+      )}
     </div>
   );
 };
@@ -18,6 +49,7 @@ export const PageTemplate = ({ title, content, slug }) => {
 PageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string,
+  slug: PropTypes.string,
 };
 
 const Page = ({ data, location }) => {
@@ -25,7 +57,7 @@ const Page = ({ data, location }) => {
 
   return (
     <Layout className="post-page" location={location}>
-      <PageTemplate title={page.title} content={page.content} />
+      <PageTemplate {...page} />
     </Layout>
   );
 };
