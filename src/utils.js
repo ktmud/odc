@@ -11,7 +11,10 @@ export const wpFluid = (image) => {
     fluid.sizes = '(max-width: 1960px) 100vw, 1960px';
     fluid.srcSet = Object.entries(image.media_details.sizes)
       .map(([_, vals]) => {
-        if (vals) return `${source_url} ${width}w`;
+        if (vals) {
+          const { source_url, width } = vals;
+          return `${source_url} ${width}w`;
+        }
         return '';
       })
       .join(', ');
