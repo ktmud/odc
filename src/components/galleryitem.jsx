@@ -96,7 +96,7 @@ export const pageQuery = graphql`
       }
       localFile {
         childImageSharp {
-          fluid {
+          fluid(srcSetBreakpoints: [1]) {
             base64
             aspectRatio
           }

@@ -5,20 +5,12 @@ import Gallery from 'react-photo-gallery';
 import GalleryItem, { GalleryItemPropType } from './galleryitem';
 import LogoWall from './logowall';
 import H1 from './h1';
+import { photoList } from '../utils';
 
 Gallery.propTypes.photos = PropTypes.arrayOf(GalleryItemPropType).isRequired;
 
 export default ({ items }) => {
-  const photos = items.map(({ path, title, featured_media: image }) => {
-    const { width, height } = image.media_details.sizes.full;
-    return {
-      path,
-      title,
-      image,
-      width,
-      height,
-    };
-  });
+  const photos = photoList(items);
   let slidesPhotos = photos.filter((x) => x.sticky);
   if (slidesPhotos.length === 0) {
     slidesPhotos = photos.splice(
@@ -37,7 +29,7 @@ export default ({ items }) => {
       // return <pre>{JSON.stringify(item, null, 4)}</pre>;
       return GalleryItem(photo);
     },
-    margin: 2,
+    margin: 1,
     targetRowHeight: 340,
   };
 

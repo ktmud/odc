@@ -91,7 +91,10 @@
   }
 
   .react-photo-gallery--gallery {
-    margin: 0 -2.5px;
+    margin: 0 -1px;
+  }
+  .gallery-item {
+    margin: 1px;
   }
   .react-photo-gallery--gallery a:link {
     .meta {
