@@ -6,11 +6,13 @@ import Img from 'gatsby-image';
 import WordpressContent from '../components/wordpressContent';
 import SEO from '../components/seo';
 import H1 from '../components/h1';
+import { wpFluid } from '../utils';
 
 const acfFields = [
   ['venue_type', '场所类型'],
   ['client', '业主'],
   ['loc', '位置'],
+  ['scale', '项目规模'],
   ['started_on', '项目开始时间'],
   ['completed_on', '项目完成时间'],
 ];
@@ -53,7 +55,7 @@ export const ProjectPage = ({
       {image ? (
         <Img
           className="hero-image"
-          fluid={image.localFile.childImageSharp.fluid}
+          fluid={wpFluid(image)}
           alt={image.alt_text}
           title={image.title}
         />
@@ -125,15 +127,15 @@ export const pageQuery = graphql`
   query($id: String!) {
     wordpressPost(id: { eq: $id }) {
       acf {
-        address
         client
+        started_on
         completed_on
-        loc
         venue_type {
           name
           slug
         }
-        started_on
+        loc
+        scale
       }
       ...PostImageFields
       type

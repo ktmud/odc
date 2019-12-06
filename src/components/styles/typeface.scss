@@ -60,7 +60,7 @@ p {
 
 body {
   line-height: 1.5em;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: 'Segoe UI', Arial, '微软雅黑', sans-serif;
   font-size: $base-font-size;
 }
 @media (min-width: $reflex-lg) {
@@ -110,7 +110,7 @@ figure {
     display: inline-block;
   }
   .en {
-    font-family: 'Helvetica Neue', sans-serif;
+    font-family: 'Helvetica Neue', Arial, Helvetica, '微软雅黑', sans-serif;
     font-weight: 100;
     display: block;
     margin-top: 0.2em;

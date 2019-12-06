@@ -33,8 +33,8 @@ export const pageQuery = graphql`
     slug
     path
     # acf {
-    #   address
     #   client
+    #   scale
     #   completed_on
     #   loc
     #   started_on

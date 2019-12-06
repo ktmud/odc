@@ -22,11 +22,11 @@ export const query = graphql`
   query($id: String!) {
     wordpressPost(id: { eq: $id }) {
       acf {
-        address
         client
         completed_on
-        loc
         started_on
+        loc
+        scale
       }
       type
       title

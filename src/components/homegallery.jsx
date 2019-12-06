@@ -10,10 +10,7 @@ Gallery.propTypes.photos = PropTypes.arrayOf(GalleryItemPropType).isRequired;
 
 export default ({ items }) => {
   const photos = items.map(({ path, title, featured_media: image }) => {
-    const {
-      presentationWidth: width,
-      presentationHeight: height,
-    } = image.localFile.childImageSharp.fluid;
+    const { width, height } = image.media_details.sizes.full;
     return {
       path,
       title,
@@ -24,7 +21,10 @@ export default ({ items }) => {
   });
   let slidesPhotos = photos.filter((x) => x.sticky);
   if (slidesPhotos.length === 0) {
-    slidesPhotos = photos.splice(0, Math.max(photos.length % 3, photos.length - 6));
+    slidesPhotos = photos.splice(
+      0,
+      Math.max(photos.length % 3, photos.length - 6),
+    );
   }
   slidesPhotos.forEach((x) => {
     x.width = '';
@@ -48,14 +48,16 @@ export default ({ items }) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-  }
+  };
 
   return (
     <div className="home-gallery">
       <Slider className="hero-image" {...sliderSettings}>
-        {slidesPhotos.map(photo => <GalleryItem key={photo.path} {...photo} showCaption />)}
+        {slidesPhotos.map((photo) => (
+          <GalleryItem key={photo.path} {...photo} showCaption />
+        ))}
       </Slider>
-    <div className="container-full">
+      <div className="container-full">
         <H1 className="title inline-title" title="最新项目 / RECENT PROJECTS" />
         <Gallery {...settings} />
         <H1 className="title inline-title" title="合作伙伴 / CLIENTS" />

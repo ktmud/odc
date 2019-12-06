@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 import H1 from './h1';
-
+import { wpFluid } from '../utils';
 
 export const GalleryItemPropType = PropTypes.shape({
   title: PropTypes.string,
@@ -37,11 +37,7 @@ export default ({
     >
       <Link key={path} to={path}>
         {image.localFile ? (
-          <Img
-            fluid={image.localFile.childImageSharp.fluid}
-            alt={image.alt_text}
-            title={image.title}
-          />
+          <Img fluid={wpFluid(image)} alt={image.alt_text} title={image.title} />
         ) : null}
         {title || caption ? (
           <div
@@ -69,17 +65,40 @@ export const pageQuery = graphql`
       caption
       source_url
       title
+      media_details {
+        sizes {
+          large {
+            source_url
+            width
+          }
+          full {
+            source_url
+            width
+            height
+          }
+          medium {
+            source_url
+            width
+          }
+          medium_large {
+            source_url
+            width
+          }
+          post_thumbnail {
+            source_url
+            width
+          }
+          wordpress_1536x1536 {
+            source_url
+            width
+          }
+        }
+      }
       localFile {
         childImageSharp {
-          fluid(
-            quality: 98
-            fit: COVER
-            maxWidth: 2560
-            srcSetBreakpoints: [420, 1600, 2560]
-          ) {
-            ...GatsbyImageSharpFluid_withWebp
-            presentationWidth
-            presentationHeight
+          fluid {
+            base64
+            aspectRatio
           }
         }
       }
