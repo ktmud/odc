@@ -73,7 +73,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
     createPage({
       // will be the url for the page
-      path: `${node.path}`,
+      path: `${decodeURIComponent(node.path)}`,
       // specify the component template of your choice
       component: tmpl,
       // In the ^template's GraphQL query, 'id' will be available
@@ -124,7 +124,7 @@ exports.createPages = async ({ graphql, actions }) => {
         items,
         itemsPerPage: 10,
         pathPrefix: ({ pageNumber }) =>
-          pageNumber === 0 ? `${path}` : `${path}/page`,
+          decodeURIComponent(pageNumber === 0 ? `${path}` : `${path}/page`),
         component: getTemplate(`${taxotype}-items`),
         context: {
           slug: key,

@@ -3,18 +3,23 @@ export const wpFluid = (image) => {
     aspectRatio: 1,
     base64: '',
     sizes: '',
-    src: '',
+    src: 'about:blank',
     srcSet: '',
   };
   if (image.localFile) {
     fluid = image.localFile.childImageSharp.fluid;
     fluid.sizes = '(max-width: 1960px) 100vw, 1960px';
     fluid.srcSet = Object.entries(image.media_details.sizes)
-      .map(([_, { source_url, width }]) => {
-        return `${source_url} ${width}w`;
+      .map(([_, vals]) => {
+        if (vals) return `${source_url} ${width}w`;
+        return '';
       })
       .join(', ');
-    fluid.src = image.media_details.sizes.full.source_url;
+    if (image.media_details.sizes.full) {
+      fluid.src = image.media_details.sizes.full.source_url;
+    } else {
+      fluid.src = fluid.base64;
+    }
   }
   return fluid;
 };
