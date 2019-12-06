@@ -10,8 +10,8 @@ export const GalleryItemPropType = PropTypes.shape({
   title: PropTypes.string,
   image: PropTypes.object,
   path: PropTypes.string.isRequired,
-  width: PropTypes.number,
-  height: PropTypes.number,
+  width: PropTypes.any,
+  height: PropTypes.any,
 });
 
 export default ({
@@ -37,7 +37,11 @@ export default ({
     >
       <Link key={path} to={path}>
         {image.localFile ? (
-          <Img fluid={wpFluid(image)} alt={image.alt_text} title={image.title} />
+          <Img
+            fluid={wpFluid(image)}
+            alt={image.alt_text}
+            title={image.title}
+          />
         ) : null}
         {title || caption ? (
           <div

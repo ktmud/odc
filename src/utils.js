@@ -10,6 +10,7 @@ export const wpFluid = (image) => {
     fluid = image.localFile.childImageSharp.fluid;
     fluid.sizes = '(max-width: 1960px) 100vw, 1960px';
     fluid.srcSet = Object.entries(image.media_details.sizes)
+      .filter((x) => x.width > 0)
       .map(([_, vals]) => {
         if (vals) {
           const { source_url, width } = vals;
@@ -28,14 +29,19 @@ export const wpFluid = (image) => {
 };
 
 export const photoList = (items) => {
-  return items.map(({ title, featured_media: image, path }) => {
-    const { width, height } = image
-      ? image.media_details.sizes.full
-      : { width: 400, height: 300 };
+  return items.map(({ title, path, sticky, featured_media: image }) => {
+    let width = 400;
+    let height = 300;
+    if (image && image.localFile) {
+      width = image.localFile.childImageSharp.fluid.aspectRatio;
+      height = 1;
+    }
+    console.log(width, height);
     return {
       title,
-      image,
       path,
+      sticky,
+      image,
       width,
       height,
     };

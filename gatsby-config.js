@@ -9,7 +9,7 @@ module.exports = {
   siteMetadata: {
     title: `城像设计`,
     description: `深圳市城像设计咨询有限公司`,
-    baiduMapAPIKey: process.env.BAIDU_MAP_API_KEY,
+    baiduMapAPIKey: process.env.BAIDU_MAP_API_KEY || 'fake',
     siteUrl: 'http://www.odcstudios.com'
   },
   plugins: [

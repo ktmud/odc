@@ -12,11 +12,13 @@ Gallery.propTypes.photos = PropTypes.arrayOf(GalleryItemPropType).isRequired;
 export default ({ items }) => {
   const photos = photoList(items);
   let slidesPhotos = photos.filter((x) => x.sticky);
+  let otherPhotos = photos.filter((x) => !x.sticky);
   if (slidesPhotos.length === 0) {
     slidesPhotos = photos.splice(
       0,
       Math.max(photos.length % 3, photos.length - 6),
     );
+    otherPhotos = photos;
   }
   slidesPhotos.forEach((x) => {
     x.width = '';
@@ -24,7 +26,7 @@ export default ({ items }) => {
   });
 
   const settings = {
-    photos,
+    photos: otherPhotos,
     renderImage({ photo }) {
       // return <pre>{JSON.stringify(item, null, 4)}</pre>;
       return GalleryItem(photo);
