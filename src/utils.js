@@ -36,7 +36,6 @@ export const photoList = (items) => {
       width = image.localFile.childImageSharp.fluid.aspectRatio;
       height = 1;
     }
-    console.log(width, height);
     return {
       title,
       path,
