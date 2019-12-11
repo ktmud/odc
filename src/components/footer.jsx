@@ -9,7 +9,7 @@ const Footer = ({ meta }) => {
         <div className="copyright">
           <p>
             &copy; {new Date().getFullYear()} {meta.description} &nbsp;
-            <span>粤ICP备19118330号-1</span>
+            <a href="http://www.beian.miit.gov.cn/" target="_blank">粤ICP备19118330号-1</a>
           </p>
         </div>
         <div className="contact-info">
