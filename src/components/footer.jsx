@@ -3,7 +3,6 @@ import Logo from '../images/odc-logo.svg';
 import Img from 'gatsby-image';
 
 const Footer = ({ meta, beianImage }) => {
-  console.log(beianImage);
   return (
     <footer>
       <img className="logo-icon" src={Logo} alt="" />
