@@ -1,7 +1,9 @@
 import React from 'react';
 import Logo from '../images/odc-logo.svg';
+import Img from 'gatsby-image';
 
-const Footer = ({ meta }) => {
+const Footer = ({ meta, beianImage }) => {
+  console.log(beianImage);
   return (
     <footer>
       <img className="logo-icon" src={Logo} alt="" />
@@ -9,14 +11,22 @@ const Footer = ({ meta }) => {
         <div className="copyright">
           <p>
             &copy; {new Date().getFullYear()} {meta.description} &nbsp;
-            <a href="http://www.beian.miit.gov.cn/" target="_blank">粤ICP备19118330号-1</a>
+            <span className="beian">
+              <a href="http://www.beian.miit.gov.cn/" target="_blank">
+                粤ICP备19118330号-1
+              </a>
+              <a
+                target="_blank"
+                href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030402003504"
+              >
+                <Img fixed={beianImage} />
+                <span>粤公网安备44030402003504号</span>
+              </a>
+            </span>
           </p>
         </div>
         <div className="contact-info">
-          <p>
-            深圳市 福田区
-            天安数码时代大厦A座2209
-          </p>
+          <p>深圳市 福田区 天安数码时代大厦A座2209</p>
           <p>
             Room 2209, Tiannan Cyber Times Building
             <br />

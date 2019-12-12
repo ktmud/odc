@@ -115,6 +115,21 @@ footer {
       height: 48px;
     }
   }
+  .beian a {
+    display: inline-block;
+    margin: 0.5em;
+    * {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .gatsby-image-wrapper {
+      margin-right: 3px;
+      margin-top: -3px;
+    }
+    img {
+      display: inline-block;
+    }
+  }
   a,
   a:visited {
     color: #888;

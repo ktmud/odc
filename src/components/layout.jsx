@@ -17,6 +17,14 @@ const Layout = (props) => {
   const { children, className, location } = props;
   const data = useStaticQuery(graphql`
     query SiteMetaQuery {
+      beianImage: file(base: { eq: "beian.png" }) {
+        id
+        childImageSharp {
+          fixed(height: 20, width: 20) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
       wordpressSiteMetadata {
         id
         description
@@ -43,11 +51,11 @@ const Layout = (props) => {
         document.body.setAttribute('data-scrolled', 0);
       }
     };
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener('scroll', onScroll);
     return () => {
-      window.removeEventListener("scroll", onScroll);
-    }
-  })
+      window.removeEventListener('scroll', onScroll);
+    };
+  });
 
   return (
     <div className={className}>
@@ -57,7 +65,10 @@ const Layout = (props) => {
         menu={data.allWordpressMenusMenusItems.nodes[0]}
       />
       <main>{children}</main>
-      <Footer meta={data.wordpressSiteMetadata}></Footer>
+      <Footer
+        meta={data.wordpressSiteMetadata}
+        beianImage={data.beianImage.childImageSharp.fixed}
+      ></Footer>
     </div>
   );
 };
