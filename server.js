@@ -55,8 +55,9 @@ function startServer() {
       if (running > 1) {
         running = 0;
         rebuild();
+      } else {
+        running = 0;
       }
-      running = 0;
     });
   }
 
