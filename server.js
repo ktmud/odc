@@ -77,7 +77,20 @@ function startServer() {
           file.serve(req, res, (e) => {
             if (e && e.status === 404) {
               // If the file wasn't found
-              file.serveFile('/404/index.html', 404, {}, req, res);
+              file.serveFile('/404/index.html', 404, {}, req, res).on('error', (err) => {
+                if (err.status === 404) {
+                  // do nothing
+                } else {
+                  console.error(err);
+                  if (!res.headersSent) {
+                    res.writeHead(404);
+                  }
+                  if (!res.finished) {
+                    res.write('哎呀，这里什么都没有耶');
+                    res.end();
+                  }
+                }
+              });
             }
           });
         }
