@@ -22,7 +22,7 @@ export default ({ data, pageContext, location }) => {
         />
         <div className="chrono-list">
           <ProjectList items={posts} />
-          <Pagination pageContext={pageContext} pathPrefix="/" />
+          <Pagination pageContext={pageContext} />
         </div>
       </div>
     </Layout>

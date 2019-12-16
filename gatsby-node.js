@@ -122,9 +122,9 @@ exports.createPages = async ({ graphql, actions }) => {
       paginate({
         createPage,
         items,
-        itemsPerPage: 10,
+        itemsPerPage: 30,
         pathPrefix: ({ pageNumber }) =>
-          decodeURIComponent(pageNumber === 0 ? `${path}` : `${path}/page`),
+          decodeURIComponent(pageNumber === 0 ? `${path}` : `${path}page`),
         component: getTemplate(`${taxotype}-items`),
         context: {
           slug: key,

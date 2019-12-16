@@ -8,21 +8,19 @@ const Footer = ({ meta, beianImage }) => {
       <img className="logo-icon" src={Logo} alt="" />
       <div className="container">
         <div className="copyright">
-          <p>
-            &copy; {new Date().getFullYear()} {meta.description} &nbsp;
-            <span className="beian">
-              <a href="http://www.beian.miit.gov.cn/" target="_blank">
-                粤ICP备19118330号-1
-              </a>
-              <a
-                target="_blank"
-                href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030402003504"
-              >
-                <Img fixed={beianImage} />
-                <span>粤公网安备44030402003504号</span>
-              </a>
-            </span>
-          </p>
+          &copy; {new Date().getFullYear()} {meta.description} &nbsp;
+          <span className="beian">
+            <a href="http://www.beian.miit.gov.cn/" target="_blank">
+              粤ICP备19118330号-1
+            </a>
+            <a
+              target="_blank"
+              href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030402003504"
+            >
+              <Img fixed={beianImage} />
+              <span>粤公网安备44030402003504号</span>
+            </a>
+          </span>
         </div>
         <div className="contact-info">
           <p>深圳市 福田区 天安数码时代大厦A座2209</p>

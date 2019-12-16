@@ -1,23 +1,25 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
-const Pagination = ({ pageContext, pathPrefix }) => {
+const Pagination = ({ pageContext }) => {
   const { previousPagePath, nextPagePath } = pageContext
+
+  console.log(pageContext);
 
   return (
     <nav className="pagination" role="navigation">
       <div className="navbar navbar-menu">
         {previousPagePath && (
-          <div className="navbar-item">
+          <div className="navbar-item prev">
             <Link to={previousPagePath} rel="prev">
-              Previous
+            &laquo; 上一页
             </Link>
           </div>
         )}
         {nextPagePath && (
-          <div className="navbar-item">
+          <div className="navbar-item next">
             <Link to={nextPagePath} rel="next">
-              Next
+             下一页 &raquo;
             </Link>
           </div>
         )}

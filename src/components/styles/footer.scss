@@ -6,12 +6,23 @@
   @media (min-width: $reflex-md) {
     text-align: left;
   }
+  @media (min-width: $reflex-lg) {
+    max-width: 1140px;
+  }
 
   img {
     display: inline-block;
     vertical-align: middle;
     margin: 1em 1.4em;
-    height: 58px;
+    height: 50px;
+
+    @media (min-width: $reflex-lg) {
+      & {
+        margin-left: 1.6em;
+        margin-right: 1.6em;
+        height: 58px;
+      }
+    }
 
     @media (min-width: $reflex-md) {
       &.huaqiaocheng {
@@ -28,17 +39,19 @@
         float: left;
         clear: left;
       }
-      &.pengguangda,
-      &.gaoshishicai {
+      &.pengguangda {
         height: 41px;
         margin-top: 1em;
         margin-bottom: 1em;
+      }
+      &.gaoshishicai {
+        height: 76px;
       }
       &.baifudongfang {
         float: left;
         height: 58px;
         margin-top: 40px;
-        margin-left: 0.5em;
+        margin-left: 0.8em;
       }
     }
     @media (max-width: 812px) {
@@ -55,9 +68,11 @@
       &.biguiyuan {
         height: 38px;
       }
-      &.pengguangda,
-      &.gaoshishicai {
+      &.pengguangda {
         height: 28px;
+      }
+      &.gaoshishicai {
+        height: 52px;
       }
     }
     @media (max-width: $reflex-xs) {
@@ -78,9 +93,11 @@
         height: 30px;
       }
       &.pengguangda,
-      &.gaoshishicai,
       &.gongyeshejicheng {
         height: 27px;
+      }
+      &.gaoshishicai {
+        height: 42px;
       }
     }
   }
