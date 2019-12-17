@@ -81,12 +81,12 @@ function startServer() {
                 if (err.status === 404) {
                   // do nothing
                 } else {
-                  console.error(err);
                   if (!res.headersSent) {
-                    res.writeHead(404);
+                    // 15 secs to rebuild the site
+                    res.writeHead(503, {'Retry-After': '15'});
                   }
                   if (!res.finished) {
-                    res.write('哎呀，这里什么都没有耶');
+                    res.write('网站维护中');
                     res.end();
                   }
                 }
