@@ -11,7 +11,7 @@ const Footer = ({ meta, beianImage }) => {
           &copy; {new Date().getFullYear()} {meta.description} &nbsp;
           <span className="beian">
             <a href="http://www.beian.miit.gov.cn/" target="_blank">
-              粤ICP备19118330号-1
+              粤ICP备19118330号
             </a>
             <a
               target="_blank"

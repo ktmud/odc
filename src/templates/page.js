@@ -23,28 +23,35 @@ const loc = {
   `,
 };
 
-export const ContactPageContent = ({ content }) => {
+export const ContactPageContent = ({ content, title }) => {
   return (
-    <div className="grid">
-      <div className="col-md-5">
-        <WordpressContent className="content" content={content} />
+    <>
+      <H1 className="title inline-title" title={title} />
+      <div className="grid">
+        <div className="col-md-5">
+          <WordpressContent className="content" content={content} />
+        </div>
+        <div className="col-md-7">
+          <BaiduMap center={loc} markers={[loc]} />
+        </div>
       </div>
-      <div className="col-md-7">
-        <BaiduMap center={loc} markers={[loc]} />
-      </div>
-    </div>
+    </>
   );
 };
 
 export const PageTemplate = ({ title, content, slug }) => {
   return (
     <div className="container">
-      <SEO title={title} />
-      <H1 className="title inline-title" title={title} />
       {slug === 'contact' ? (
-        <ContactPageContent content={content} />
+        <ContactPageContent content={content} title={title} />
       ) : (
-        <WordpressContent className="content" content={content} />
+        <>
+          <div className="entry-content">
+            <H1 className="title inline-title" title={title} />
+            <span></span>
+          </div>
+          <WordpressContent content={content} />
+        </>
       )}
     </div>
   );
@@ -61,6 +68,7 @@ const Page = ({ data, location }) => {
 
   return (
     <Layout className="post-page" location={location}>
+      <SEO title={page.title} />
       <PageTemplate {...page} />
     </Layout>
   );
