@@ -18,7 +18,15 @@ export default () => {
     <div className="logo-wall">
       {pics.map(([filename, brandname]) => {
         const src = require(`../images/logo-wall/${filename}`);
-        return <img alt="" className={`${filename.split('.')[0]}`} title={brandname} key={filename} src={src} />;
+        return (
+          <img
+            alt=""
+            className={`${filename.split('.')[0]}`}
+            title={brandname}
+            key={filename}
+            src={src}
+          />
+        );
       })}
     </div>
   );

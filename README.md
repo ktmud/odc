@@ -2,7 +2,7 @@
 
 Built with Gatsby and Wordpress.
 
-## Fix ACF:
+## Fix ACF
 
 Add this to `functions.php`:
 
@@ -27,6 +27,6 @@ if (!function_exists('acf_nullify_empty')) {
 
 add_filter('acf/format_value/type=image', 'acf_nullify_empty', 100, 3);
 add_filter('acf/format_value/type=relationship', 'acf_nullify_empty', 100, 3);
-add_filter('acf/format_value/type=gallery', 'acf_nullify_empty', 100, 3); 
-add_filter('acf/format_value/type=taxonomy', 'acf_nullify_empty', 100, 3); 
+add_filter('acf/format_value/type=gallery', 'acf_nullify_empty', 100, 3);
+add_filter('acf/format_value/type=taxonomy', 'acf_nullify_empty', 100, 3);
 ```

@@ -1,4 +1,11 @@
 {
   "parser": "babel-eslint",
-  "extends": ["standard", "standard-react"]
+  "extends": ["standard", "standard-react"],
+  "rules": {
+    "semi": "off",
+    "jsx-quotes": "off",
+    "react/prop-types": "off",
+    "react/jsx-pascal-case": "off",
+    "space-before-function-paren": "off"
+  }
 }

@@ -1,4 +1,4 @@
-FROM node:10
+FROM node:12
 WORKDIR /app
 ARG NODE_ENV=production
 ARG NPM_REGISTRY=https://registry.npmjs.org

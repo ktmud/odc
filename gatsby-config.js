@@ -10,7 +10,7 @@ module.exports = {
     title: `城像设计`,
     description: `深圳市城像设计咨询有限公司`,
     baiduMapAPIKey: process.env.BAIDU_MAP_API_KEY || 'fake',
-    siteUrl: 'http://www.odcstudios.com'
+    siteUrl: 'http://www.odcstudios.com',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -24,8 +24,8 @@ module.exports = {
         // does your site use the Advanced Custom Fields Plugin?
         useACF: true,
         searchAndReplaceContentUrls: {
-          sourceUrl: "http://content.odcstudios.com",
-          replacementUrl: "http://wp.odcstudios.com",
+          sourceUrl: 'http://content.odcstudios.com',
+          replacementUrl: 'http://wp.odcstudios.com',
         },
         // plugins: [
         //   {
@@ -88,6 +88,6 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
-    `gatsby-plugin-sitemap`
+    `gatsby-plugin-sitemap`,
   ],
 };

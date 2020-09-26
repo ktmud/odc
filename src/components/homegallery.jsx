@@ -16,7 +16,7 @@ export default ({ items }) => {
   if (slidesPhotos.length === 0) {
     slidesPhotos = photos.splice(
       0,
-      Math.max(photos.length % 3, photos.length - 6),
+      Math.max(photos.length % 3, photos.length - 6)
     );
     otherPhotos = photos;
   }

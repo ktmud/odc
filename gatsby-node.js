@@ -112,7 +112,7 @@ exports.createPages = async ({ graphql, actions }) => {
     }
     postsByCategory[node.slug].path = (node.path || `/${node.slug}/`).replace(
       '/category',
-      '',
+      ''
     );
   });
 

@@ -1,7 +1,6 @@
 const createServer = require('http').createServer;
-const parseUrl = require('url').parse;
-const static = require('node-static');
-const file = new static.Server('./public');
+const nodeStatic = require('node-static');
+const file = new nodeStatic.Server('./public');
 
 function runCommand(cmd, args, callback) {
   const { spawn } = require('child_process');
@@ -38,7 +37,7 @@ function startServer() {
     if (running > 1) {
       if (res) {
         res.writeHead(200, { 'Content-Type': 'text/plain' });
-        res.write(`Another task already in progress.\n`);
+        res.write('Another task already in progress.\n');
         res.end();
       }
       return;
@@ -63,8 +62,8 @@ function startServer() {
 
   createServer((req, res) => {
     req
-      .addListener('end', function() {
-        const parsedUrl = parseUrl(req.url);
+      .addListener('end', function () {
+        const parsedUrl = new URL(req.url);
         const { pathname, query } = parsedUrl;
         if (
           pathname === '/__rebuild__' &&
@@ -77,20 +76,22 @@ function startServer() {
           file.serve(req, res, (e) => {
             if (e && e.status === 404) {
               // If the file wasn't found
-              file.serveFile('/404/index.html', 404, {}, req, res).on('error', (err) => {
-                if (err.status === 404) {
-                  // do nothing
-                } else {
-                  if (!res.headersSent) {
-                    // 15 secs to rebuild the site
-                    res.writeHead(503, {'Retry-After': '15'});
+              file
+                .serveFile('/404/index.html', 404, {}, req, res)
+                .on('error', (err) => {
+                  if (err.status === 404) {
+                    // do nothing
+                  } else {
+                    if (!res.headersSent) {
+                      // 15 secs to rebuild the site
+                      res.writeHead(503, { 'Retry-After': '15' });
+                    }
+                    if (!res.finished) {
+                      res.write('网站维护中');
+                      res.end();
+                    }
                   }
-                  if (!res.finished) {
-                    res.write('网站维护中');
-                    res.end();
-                  }
-                }
-              });
+                });
             }
           });
         }

@@ -32,7 +32,7 @@ export default ({
           }
         }
       }
-    `,
+    `
   );
 
   useEffect(() => {
@@ -89,12 +89,12 @@ export default ({
               isDesktop = true;
             }
             uris.push(
-              `http://api.map.baidu.com/place/detail?uid=${x.placeId}&output=html&src=odc.web`,
+              `http://api.map.baidu.com/place/detail?uid=${x.placeId}&output=html&src=odc.web`
             );
             marker.addEventListener('click', () => {
               for (let uri of uris) {
                 try {
-                  if (isDesktop)  {
+                  if (isDesktop) {
                     window.open(uri);
                   } else {
                     window.location = uri;
