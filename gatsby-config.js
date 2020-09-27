@@ -7,16 +7,17 @@ const protocol = 'http';
 
 module.exports = {
   siteMetadata: {
-    title: `城像设计`,
-    description: `深圳市城像设计咨询有限公司`,
+    title: '城像设计',
+    description: '深圳市城像设计咨询有限公司',
     baiduMapAPIKey: process.env.BAIDU_MAP_API_KEY || 'fake',
     siteUrl: 'http://www.odcstudios.com',
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
+    'gatsby-plugin-react-helmet',
     {
-      resolve: `gatsby-source-wordpress`,
+      resolve: 'gatsby-source-wordpress',
       options: {
+        minimizeDeprecationNotice: true,
         baseUrl,
         protocol,
         // is it hosted on wordpress.com, or self-hosted?
@@ -29,7 +30,7 @@ module.exports = {
         },
         // plugins: [
         //   {
-        //     resolve: `gatsby-wordpress-inline-images`,
+        //     resolve: 'gatsby-wordpress-inline-images',
         //     options: {
         //       baseUrl,
         //       protocol,
@@ -51,26 +52,26 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `images`,
+        name: 'images',
         path: `${__dirname}/src/images`,
         limit: 50,
       },
     },
-    `gatsby-image`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    'gatsby-image',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        name: `城像设计`,
-        short_name: `odcstudios`,
-        start_url: `/`,
-        background_color: `#FD780F`,
-        theme_color: `#FD780F`,
-        display: `minimal-ui`,
-        icon: `src/images/odc-logo.png`, // This path is relative to the root of the site.
+        name: '城像设计',
+        short_name: 'odcstudios',
+        start_url: '/',
+        background_color: '#FD780F',
+        theme_color: '#FD780F',
+        display: 'minimal-ui',
+        icon: 'src/images/odc-logo.png', // This path is relative to the root of the site.
       },
     },
     {
@@ -84,10 +85,10 @@ module.exports = {
         },
       },
     },
-    `gatsby-plugin-styled-components`,
+    'gatsby-plugin-styled-components',
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    `gatsby-plugin-offline`,
-    `gatsby-plugin-sitemap`,
+    'gatsby-plugin-offline',
+    'gatsby-plugin-sitemap',
   ],
 };
