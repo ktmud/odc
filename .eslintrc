@@ -1,6 +1,6 @@
 {
   "parser": "babel-eslint",
-  "extends": ["standard", "standard-react"],
+  "extends": ["standard", "standard-react", "plugin:prettier/recommended"],
   "rules": {
     "semi": "off",
     "jsx-quotes": "off",

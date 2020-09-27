@@ -30,3 +30,16 @@ add_filter('acf/format_value/type=relationship', 'acf_nullify_empty', 100, 3);
 add_filter('acf/format_value/type=gallery', 'acf_nullify_empty', 100, 3);
 add_filter('acf/format_value/type=taxonomy', 'acf_nullify_empty', 100, 3);
 ```
+
+## Build
+
+1. Update base image:
+
+   ```bash
+   docker build -f base.Dockerfile -t ktmud/odc .
+   docker publish ktmud/odc
+   ```
+
+2. Update Docker image hash in `Dockerfile`.
+3. Commit and push.
+

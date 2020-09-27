@@ -63,47 +63,22 @@ export default ({
 };
 
 export const pageQuery = graphql`
-  fragment PostImageFields on wordpress__POST {
-    featured_media {
-      alt_text
-      caption
-      source_url
-      title
-      media_details {
-        sizes {
-          large {
-            source_url
+  fragment PostImageFields on WPGraphQL_Post {
+    featuredImage {
+      node {
+        altText
+        caption
+        sourceUrl
+        title
+        mediaDetails {
+          sizes {
+            name
+            sourceUrl
             width
           }
-          full {
-            source_url
-            width
-            height
-          }
-          medium {
-            source_url
-            width
-          }
-          medium_large {
-            source_url
-            width
-          }
-          post_thumbnail {
-            source_url
-            width
-          }
-          wordpress_1536x1536 {
-            source_url
-            width
-          }
-        }
-      }
-      localFile {
-        childImageSharp {
-          fluid(srcSetBreakpoints: [1]) {
-            base64
-            aspectRatio
-          }
+          width
+          height
+          file
         }
       }
     }

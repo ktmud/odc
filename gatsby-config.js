@@ -15,17 +15,25 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-source-wordpress`,
+      resolve: `gatsby-source-wordpress-experimental`,
       options: {
+        url:
+          process.env.WPGRAPHQL_URL ||
+          'http://content.odcstudios.com/index.php?graphql',
         baseUrl,
         protocol,
-        // is it hosted on wordpress.com, or self-hosted?
-        hostingWPCOM: false,
-        // does your site use the Advanced Custom Fields Plugin?
-        useACF: true,
         searchAndReplaceContentUrls: {
           sourceUrl: 'http://content.odcstudios.com',
           replacementUrl: 'http://wp.odcstudios.com',
+        },
+        verbose: true,
+        develop: {
+          hardCacheMediaFiles: true,
+        },
+        debug: {
+          graphql: {
+            writeQueriesToDisk: true,
+          },
         },
         // plugins: [
         //   {
