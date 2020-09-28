@@ -63,11 +63,11 @@ function startServer() {
   createServer((req, res) => {
     req
       .addListener('end', function () {
-        const parsedUrl = new URL(req.url);
-        const { pathname, query } = parsedUrl;
+        const parsedUrl = new URL(req.url, 'http://locahost');
+        const { pathname, search } = parsedUrl;
         if (
           pathname === '/__rebuild__' &&
-          query === secret
+          search === secret
           // || (req.headers.host.split(':')[0] === 'localhost' && pathname === '/__rebuild__')
         ) {
           rebuild(res);
