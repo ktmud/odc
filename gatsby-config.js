@@ -2,7 +2,7 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV || 'development'}`,
 });
 
-const baseUrl = process.env.WORDPRESS_BASEURL || 'localhost:1880';
+const baseUrl = process.env.WORDPRESS_BASEURL || 'content.odcstudios.com';
 const protocol = 'http';
 
 module.exports = {
