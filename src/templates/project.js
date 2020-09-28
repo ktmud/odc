@@ -43,7 +43,7 @@ export const ProjectPage = ({
     categories &&
     categories
       .filter(({ parent_element: parent }) => {
-        return parent && parent.slug == 'projects';
+        return parent && parent.slug === 'projects';
       })
       .map(({ path, name }) => ({
         path: path.replace('/category', ''),

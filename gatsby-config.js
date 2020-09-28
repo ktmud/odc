@@ -47,7 +47,7 @@ module.exports = {
           '**/*/*/menus',
           '**/*/*/menus-locations',
         ],
-        concurrentRequests: 5,
+        concurrentRequests: 6,
         keepMediaSizes: true,
       },
     },
@@ -80,7 +80,7 @@ module.exports = {
         useResolveUrlLoader: {
           options: {
             debug: true,
-            sourceMap: true, //default is false
+            sourceMap: true, // default is false
           },
         },
       },

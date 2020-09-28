@@ -10,11 +10,11 @@ const Footer = ({ meta, beianImage }) => {
         <div className="copyright">
           &copy; {new Date().getFullYear()} {meta.description} &nbsp;
           <span className="beian">
-            <a href="http://beian.miit.gov.cn/" target="_blank">
+            <a href="http://beian.miit.gov.cn/" target="beian">
               粤ICP备19118330号
             </a>
             <a
-              target="_blank"
+              target="beian"
               href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030402003504"
             >
               <Img fixed={beianImage} />
