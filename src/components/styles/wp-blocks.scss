@@ -775,10 +775,12 @@ section.wp-block-cover-image > h2 {
 .wp-block-image {
   max-width: 100%;
   margin-bottom: 1em;
+  height: auto;
 }
 
 .wp-block-image img {
   max-width: 100%;
+  height: auto;
 }
 
 .wp-block-image.aligncenter {
@@ -788,6 +790,7 @@ section.wp-block-cover-image > h2 {
 .wp-block-image.alignfull img,
 .wp-block-image.alignwide img {
   width: 100%;
+  height: auto;
 }
 
 .wp-block-image .aligncenter,
